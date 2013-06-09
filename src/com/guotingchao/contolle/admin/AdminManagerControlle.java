@@ -25,7 +25,7 @@ public class AdminManagerControlle extends Controller {
 	 */
 	@Before(AdminUserValidator.class)
 	public void add() {
-		try{
+		try{ 
 			boolean result =getModel(User.class).save();
 			if(result){
 				setAttr("add_success_msg", "恭喜添加用户"+getPara("user.uname")+"成功,现在就可以登录");
