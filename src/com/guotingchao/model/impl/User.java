@@ -10,6 +10,6 @@ public class User extends Model<User> implements IUserDao{
 	public static User userDao = new User();
 	@Override
 	public List<User> findUserList() {
-		return null;
+		return User.userDao.find("select * from user where flag != -2");
 	}
 }

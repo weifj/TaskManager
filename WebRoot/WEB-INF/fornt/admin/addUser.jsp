@@ -34,30 +34,31 @@
 							</div>
 						</div>
 						<div class="box-content">
-							<form class="form-horizontal">
+							<form class="form-horizontal" action="admin/add" method="post">
 								<fieldset>
 									<div class="control-group ">
-										<label class="control-label" for="uname">用户名</label>
+										<label class="control-label" for="user.uname">用户名</label>
 										<div class="controls">
-											<input class="input-xlarge focused" id="uname" type="text"
-												placeholder="请输入用户名">
+											<input class="input-xlarge focused" id="user.uname" value="${user.uname}"name="user.uname" type="text"
+												placeholder="请输入用户名"> <span class="label label-warning">${uname_msg}</span>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="upass">密码</label>
+										<label class="control-label" for="user.upass">密码</label>
 										<div class="controls">
-											<input class="input-xlarge" id="upass" type="password"
-												placeholder="请输入密码">
+											<input class="input-xlarge" id="user.upass" value="${user.upass}" name="user.upass" type="password" 
+												placeholder="请输入密码">	<span class="label label-warning">${upass_msg}</span>
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="valid-upass">确认密码</label>
+										<label class="control-label" for="upass_valid">确认密码</label>
 										<div class="controls">
-											<input class="input-xlarge" id="valid-upass" type="password"
-												placeholder="请重复密码">
+											<input class="input-xlarge" id="upass_valid" type="password" value="${upass_valid}" name="upass_valid"
+												placeholder="请重复密码">	<span class="label label-warning">${upass_valid_msg}</span>
 										</div>
 									</div>
 								</fieldset>
+								<div class="label "></div>
 								<div class="form-actions center">
 									<button type="submit" class="btn">
 										<span class="icon32 icon-color icon-check" />
@@ -68,6 +69,20 @@
 								</div>
 							</form>
 						</div>
+						<c:choose>
+							<c:when test="${add_success_msg!='' && add_success_msg!= null}">
+								<div class="alert alert-success span3">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong>成功</strong> ${add_success_msg}
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="alert alert-info span3">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong>注意</strong> 请正确填写以上相关内容.
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 				<jsp:include page="include/footer.jsp" flush="true" />
