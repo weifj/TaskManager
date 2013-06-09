@@ -16,7 +16,7 @@ public class AdminUserValidator extends Validator {
 		validateRequired("user.upass", "upass_msg", "请输入密码");
 		validateEqualField("upass_valid","user.upass", "upass_valid_msg", "确认密码不一致 请重新输入");
 	}
-	
+	 
 	@Override
 	protected void handleError(Controller c) {
 		c.keepModel(User.class);
