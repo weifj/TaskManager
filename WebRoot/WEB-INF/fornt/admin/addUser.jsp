@@ -73,7 +73,7 @@
 							<c:when test="${add_success_msg!='' && add_success_msg!= null}">
 								<div class="alert alert-success span3">
 									<button type="button" class="close" data-dismiss="alert">×</button>
-									<strong>成功</strong> ${add_success_msg}
+									<strong> ${add_success_msg} </strong>
 								</div>
 							</c:when>
 							<c:otherwise>
