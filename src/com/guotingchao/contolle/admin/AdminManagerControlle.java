@@ -1,10 +1,12 @@
 package com.guotingchao.contolle.admin;
 
-import java.io.UnsupportedEncodingException;
-
+import com.guotingchao.interceptor.IndexInterceptor;
 import com.guotingchao.model.impl.User;
 import com.guotingchao.validator.admin.AdminUserValidator;
+import com.guotingchao.validator.admin.LoginValidator;
 import com.jfinal.aop.Before;
+import com.jfinal.aop.ClearInterceptor;
+import com.jfinal.aop.ClearLayer;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log4jLogger;
 import com.jfinal.log.Logger;
@@ -12,6 +14,7 @@ import com.jfinal.log.Logger;
 /**
  * @author os-guozc
  */
+@Before(IndexInterceptor.class)
 public class AdminManagerControlle extends Controller {
 	Logger log = Log4jLogger.getLogger(AdminManagerControlle.class);
 
@@ -27,41 +30,39 @@ public class AdminManagerControlle extends Controller {
 	 */
 	@Before(AdminUserValidator.class)
 	public void add() {
-		try{ 
-			boolean result =getModel(User.class).save();
-			if(result){
-				setAttr("add_success_msg", "恭喜添加用户"+getPara("user.uname")+"成功,现在就可以登录");
+		try {
+			boolean result = getModel(User.class).save();
+			if (result) {
+				setAttr("add_success_msg", "恭喜添加用户" + getPara("user.uname")+ "成功,现在就可以登录");
 			}
-		}catch(Exception e){
-			setAttr("add_success_msg", "添加用户"+getPara("user.uname")+"失败,原因："+e.getMessage());
+		} catch (Exception e) {
+			setAttr("add_success_msg", "添加用户" + getPara("user.uname")+ "失败,原因：" + e.getMessage());
 		}
 			render("addUser.jsp");
 	}
 
 	/**
-	 * 删除用户
+	 * 登录
 	 */
-	public void delete() {
-
+	@ClearInterceptor(ClearLayer.ALL)
+	@Before(LoginValidator.class)
+	public void dologin(){
+		log.info("登录");
 	}
 
+	@ClearInterceptor(ClearLayer.ALL)
+	public void login() {
+		User user =getSessionAttr("user_info");
+		if(user!=null){
+			render("/admin");
+		}else
+			render("login.jsp");
+	}
 	/**
-	 * 更新用户信息
+	 *  添加用户页
 	 */
-	public void update() {
-
+	public void addUser(){
+		render("addUser.jsp");
 	}
 
-	/**
-	 * 查询用户
-	 */
-	public void find() {
-
-	}
-
-	/**
-	 * ================================ View 层转发
-	 */
-	public void addUser() {
-	};
 }

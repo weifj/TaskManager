@@ -13,7 +13,6 @@ import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
-import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.render.JspRender;
 import com.jfinal.render.ViewType;
 
@@ -37,13 +36,14 @@ public class BaseConfig extends JFinalConfig {
 
 	@Override
 	public void configHandler(Handlers me) {
-		DruidStatViewHandler dvh = new DruidStatViewHandler("/druid");
-		me.add(dvh);
+//		DruidStatViewHandler dvh = new DruidStatViewHandler("/druid");
+//		me.add(dvh);
 	}
-
+	/**
+	 *  添加一个全局的拦截器
+	 */
 	@Override
 	public void configInterceptor(Interceptors me) {
-
 	}
 
 	@Override

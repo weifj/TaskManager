@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<%@ page import="com.guotingchao.model.impl.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String path = request.getContextPath();
@@ -52,16 +53,15 @@ body {
 			<!-- user dropdown starts -->
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-user"></i><span class="hidden-phone"> admin</span> <span
+					<i class="icon-user"></i><span class="hidden-phone">${user_info.attrs}</span> <span
 					class="caret"></span>
 				</a>
 				<ul class="dropdown-menu">
 					<li><a href="#">个人资料</a></li>
 					<li class="divider"></li>
-					<li><a href="login.html">退出</a></li>
+					<li><a href="admin/loginOut">退出</a></li>
 				</ul>
 			</div>
-			<!-- user dropdown ends -->
 		</div>
 	</div>
 </div>

@@ -8,6 +8,6 @@ import com.jfinal.config.Routes;
 public class AdminRoutes extends Routes {
 	@Override
 	public void config() {
-		add("/admin", AdminManagerControlle.class); 
+		add("/admin", AdminManagerControlle.class,"/admin"); 
 	}
 }
