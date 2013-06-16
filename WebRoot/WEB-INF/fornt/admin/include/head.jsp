@@ -51,18 +51,19 @@ body {
 		<div class="container-fluid">
 			<a class="brand" href="<%=basePath %>admin"><span>用户管理后台</span></a>
 			<!-- user dropdown starts -->
-			<div class="btn-group pull-right">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-user"></i><span class="hidden-phone">${user_info.attrs}</span> <span
-					class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#">个人资料</a></li>
-					<li class="divider"></li>
-					<li><a href="admin/loginOut">退出</a></li>
-				</ul>
-			</div>
+			<c:if test="${user_info!=null}">
+				<div class="btn-group pull-right">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="icon-user"></i><span class="hidden-phone">${user_info.attrs['uname']}</span> <span
+						class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">个人资料</a></li>
+						<li class="divider"></li>
+						<li><a href="admin/loginOut">退出</a></li>
+					</ul>
+				</div>
+			</c:if>
 		</div>
-	</div>
-</div>
+	</div></div>
 <!-- topbar ends -->
