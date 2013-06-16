@@ -13,8 +13,13 @@ public class User extends Model<User> implements IUserDao{
 	public List<User> findUserList() {
 		return User.userDao.find("select * from user where flag != -2");
 	}
-	public Map<String, Object> getAttrs(){
-		    return super.getAttrs();
+	
+	@Override
+	public User findUser(Long id) {
+		return User.userDao.findById(id);
 	}
+	public Map<String, Object> getAttrs(){
+	    return super.getAttrs();
+}
 	
 }

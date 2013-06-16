@@ -6,4 +6,5 @@ import com.guotingchao.model.impl.User;
 
 public interface IUserDao{
 	public List<User> findUserList();
+	public User	findUser(Long id);
 }

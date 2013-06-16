@@ -64,5 +64,24 @@ public class AdminManagerControlle extends Controller {
 	public void addUser(){
 		render("addUser.jsp");
 	}
+	/***
+	 *  退出登录
+	 */
+	public void loginOut(){
+		removeSessionAttr("user_info");
+		redirect("/admin/login");
+	}
+	/**
+	 *   个人信息
+	 *   #TODO 
+	 *     1.管理角色
+	 *     2.任务相关信息
+	 *     3.用户基本信息 包括
+	 *       可修改 用户信息
+	 */
+	public void userInfo(){	
+		setAttr("roleInfo", User.userDao.findUser(getParaToLong("uid")));
+		render("roleInfo.jsp");
+	}
 
 }
