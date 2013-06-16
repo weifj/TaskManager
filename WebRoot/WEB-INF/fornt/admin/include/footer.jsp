@@ -74,4 +74,11 @@
 <script src="<%=basePath%>js/jquery.history.js"></script>
 <!-- application script for Charisma demo -->
 <script src="<%=basePath%>js/charisma.js"></script>
-
+<script type="text/javascript">
+	  (function(){
+	  	var days = ['周日','周一','周二','周三','周四','周五','周六'],
+	  		today= new Date(),
+	  		msg  = '今天是 '+ today.getDate() + "号 " +days[today.getDay()] ;
+	  		$(".nav.nav-tabs.nav-stacked.main-menu").append("<div class='box span10 center'><h5>"+msg+"</h5></div>");
+	  }());
+</script>
