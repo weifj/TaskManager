@@ -74,14 +74,30 @@ public class AdminManagerControlle extends Controller {
 	/**
 	 *   个人信息
 	 *   #TODO 
-	 *     1.管理角色
-	 *     2.任务相关信息
-	 *     3.用户基本信息 包括
-	 *       可修改 用户信息
+	 *     1.管理角色 ok
+	 *     2.任务相关信息  no 
+	 *     3.用户基本信息 包括 ok
+	 *       可修改 用户信息     ok
 	 */
 	public void userInfo(){	
 		setAttr("roleInfo", User.userDao.findUser(getParaToLong("uid")));
 		render("roleInfo.jsp");
+	}
+	
+	/**
+	 *  用户信息更新
+	 */
+	@Before(AdminUserValidator.class)
+	public void update(){
+		try {
+			boolean result = getModel(User.class).update();
+			if (result) {
+				setAttr("add_success_msg", "更新用户信息成功");
+			}
+		} catch (Exception e) {
+				setAttr("add_success_msg", "更新用户信息失败 ! 原因：" + e.getMessage());
+		}
+				render("releInfo.jsp");
 	}
 
 }
