@@ -1,6 +1,6 @@
 package com.guotingchao.route.admin;
 
-import com.guotingchao.contolle.admin.AdminManagerControlle;
+import com.guotingchao.controlle.admin.AdminManagerControlle;
 import com.jfinal.config.Routes;
 /**
  * @author os-guozc

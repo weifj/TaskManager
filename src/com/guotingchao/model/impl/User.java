@@ -18,8 +18,9 @@ public class User extends Model<User> implements IUserDao{
 	public User findUser(Long id) {
 		return User.userDao.findById(id);
 	}
+	
 	public Map<String, Object> getAttrs(){
 	    return super.getAttrs();
-}
+	}
 	
 }

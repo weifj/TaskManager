@@ -45,6 +45,7 @@ body {
 <link href='<%=basePath %>css/opa-icons.css' rel='stylesheet'>
 <link href='<%=basePath %>css/uploadify.css' rel='stylesheet'>
 </head>
+<body>
 <!--  topbar start -->
 <div class="navbar">
 	<div class="navbar-inner">
