@@ -50,7 +50,7 @@
 				 <div class="box span10">
 					<div class="box-header well" data-original-title="">
 						<span class="label label-important" style="font-size:16px;padding:3px">进行的任务</span>
-						<a href="admin/addUser" class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;">查看任务</a>
+						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
 						<div class="box-icon">
 								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
@@ -81,7 +81,7 @@
 				 <div class="box span10">
 					<div class="box-header well" data-original-title="">
 						<span class="label label-warning" style="font-size:16px;padding:3px">冻结的任务</span>
-						<a href="admin/addUser" class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;">查看任务</a>
+						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
 						<div class="box-icon">
 								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
@@ -111,7 +111,7 @@
 				 <div class="box span10">
 					<div class="box-header well" data-original-title="">
 						<span class="label label-success" style="font-size:16px;padding:3px">完成的任务</span>
-						<a href="admin/addUser" class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;">查看任务</a>
+						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
 						<div class="box-icon">
 								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
@@ -149,9 +149,9 @@
 		$(".taskName").click(function(){
 			var _self=this;
 			tid = _self.value;
-			$(".btn.btn-primary").show();
+			$(_self).parent().parent().parent().parent().parent().parent().parent().parent().parent().find("span:eq(1)").show();
 			$.ajax({
-				url:"TaskInfo",
+				url:"taskInfo",
 				type:"post",
 				data:{"tid":this.value},
 				success:function(Task){
@@ -178,7 +178,7 @@
 			});
 		});
 		$(".btn.btn-primary").click(function(){
-			 window.location.href="show";
+			 window.location.href="taskInfo/show"+tid;
 		});
 		
 	});

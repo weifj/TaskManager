@@ -9,7 +9,7 @@ public class ForntRoutes extends Routes {
 	
 	@Override
 	public void config() {
-		add("/show",ShowController.class);
+		add("/taskInfo/show",ShowController.class);
 		add("/taskInfo",TaskController.class);
 		add("/",IndexController.class);
 	}

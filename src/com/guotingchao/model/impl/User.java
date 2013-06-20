@@ -22,5 +22,10 @@ public class User extends Model<User> implements IUserDao{
 	public Map<String, Object> getAttrs(){
 	    return super.getAttrs();
 	}
+
+	@Override
+	public List<User> getUserByTaskId(Long tid) {
+		return User.userDao.find("select * from user where id IN (SELECT uid FROM t_user_task WHERE tid=?)",tid);
+	}
 	
 }
