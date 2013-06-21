@@ -90,7 +90,7 @@
 														</c:otherwise>
 													</c:choose></td>
 												<td class="center">
-													 <a class="btn btn-info" href="admin/userInfo?uid=${user.id}"> 
+													 <a class="btn btn-info" href="admin/roleInfo?uid=${user.id}"> 
 														<i class="icon-edit icon-white"></i>编辑
 													 </a> 
 													 <a class="btn btn-danger" href="#"> 
