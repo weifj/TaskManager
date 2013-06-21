@@ -6,12 +6,6 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%
-	List<Task> taskListInit = (List<Task>) request.getAttribute("taskListInit");
-	List<Task> taskListOn = (List<Task>) request.getAttribute("taskListOn");
-	List<Task> taskListOver = (List<Task>) request.getAttribute("taskListOver");
-	List<Task> taskListClose = (List<Task>) request.getAttribute("taskListClose");
-%>
 <jsp:include page="head.jsp" flush="true">
 	<jsp:param name="title" value="用户管理前台-任务展示" />
 </jsp:include>
@@ -178,7 +172,7 @@
 			});
 		});
 		$(".btn.btn-primary").click(function(){
-			 window.location.href="taskInfo/show"+tid;
+			 window.location.href="taskInfo/show/"+tid;
 		});
 		
 	});
