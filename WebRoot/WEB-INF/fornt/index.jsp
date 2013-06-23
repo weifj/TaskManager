@@ -6,6 +6,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+
 <jsp:include page="head.jsp" flush="true">
 	<jsp:param name="title" value="用户管理前台-任务展示" />
 </jsp:include>
