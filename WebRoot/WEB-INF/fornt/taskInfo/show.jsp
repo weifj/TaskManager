@@ -15,7 +15,13 @@
 	<div class="row-fluid sortable ui-sortable">
 		<div class="box span12">
 			<div class="box-header well" data-original-title="">
-				<h2><span title=".icon32  .icon-blue  .icon-pin " class="icon32 icon-blue icon-pin" style="margin-top: -8px;"></span>${task.taskname}</h2>
+				<h2><span title=".icon32  .icon-blue  .icon-pin " class="icon32 icon-blue icon-pin" style="margin-top: -8px;"></span>${task.taskname}
+					<span style="padding-left: 241px;">重要指数:</span>
+				</h2>
+				
+	            <c:forEach begin="1" end="${task.rank}" step="1">
+				      <span title=".icon32  .icon-blue  .icon-star-on " class="icon32 icon-blue icon-star-on"  style="margin-top: -8px;"></span>  
+			    </c:forEach>
 				<div class="box-icon">
 					<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 					<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -114,7 +120,7 @@
 						<div class="box-content">
 	                  	<div class="row-fluid">
 	                  		<div class="span4">
-							<span><fmt:formatDate value="${task.creat_time}" type="both" pattern="EEEE,MMMM d,yyyy HH:mm:ss Z"/>
+							<span><fmt:formatDate value="${task.creat_time}" type="both" pattern="yyyy-MM-d EEEE	 HH:mm:ss"/>
 	                  			
 	                  		</span>
 							</div>
@@ -131,7 +137,7 @@
 						<div class="box-content">
 	                  	<div class="row-fluid">
 	                  		<div class="span4">
-							<span><fmt:formatDate value="${task.play_time}" type="both" pattern="EEEE,MMMM d,yyyy HH:mm:ss Z"/>
+							<span><fmt:formatDate value="${task.play_time}" type="both" pattern="yyyy-MM-d EEEE	 HH:mm:ss"/>
 	                  			
 	                  		</span>
 							</div>
@@ -148,7 +154,7 @@
 						<div class="box-content">
 	                  	<div class="row-fluid">
 	                  		<div class="span4">
-							<span><fmt:formatDate value="${task.finish_time}" type="both" pattern="EEEE,MMMM d,yyyy HH:mm:ss Z"/>
+							<span><fmt:formatDate value="${task.finish_time}" type="both" pattern="yyyy-MM-d EEEE	 HH:mm:ss"/>
 	                  			
 	                  		</span>
 							</div>
