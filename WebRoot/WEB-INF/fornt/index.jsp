@@ -15,6 +15,7 @@
 					<div class="box-header well" data-original-title="">
 						<span class="label" style="font-size:16px;padding:3px">初始的任务</span>
 						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
+						<a href="addTask" style="line-height: 14px;margin-left: 64%;margin-bottom: 6px;" class="btn btn-info">添加新任务</a>
 						<div class="box-icon">
 								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
 						</div>
