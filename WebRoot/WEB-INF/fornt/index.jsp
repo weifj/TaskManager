@@ -1,182 +1,180 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="com.guotingchao.model.impl.Task"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<jsp:include page="head.jsp" flush="true">
-	<jsp:param name="title" value="用户管理前台-任务展示" />
-</jsp:include>
- 	<div class="container">
-		<div id="content" class="span20">
-  				 <div class="box span10">
-					<div class="box-header well" data-original-title="">
-						<span class="label" style="font-size:16px;padding:3px">初始的任务</span>
-						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
-						<div class="box-icon">
-								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					
-					<div class="box-content">
-                  	<div class="row-fluid">
-                  		<table >
-                  			<tr>
-                  				<td>
-	                  			<div class="box-content">
-										<ul>
-										  <c:forEach items="${taskListInit}" var="task">
-										 	 <li class="taskName" value="${task.id}"><a href="#"><span title=".icon  .icon-black  .icon-flag " class="icon icon-black icon-flag"></span>${task.taskname}</a></li>
-										   </c:forEach>
-										</ul>           
-								</div>
-                  				</td>
-                  				<td width="90px"></td>
-                  				<td>
-                  				</td>
-                  			</tr>
-                  		</table>
-                    </div>                   
-                  </div>
-				</div>
-				 <div class="box span10">
-					<div class="box-header well" data-original-title="">
-						<span class="label label-important" style="font-size:16px;padding:3px">进行的任务</span>
-						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
-						<div class="box-icon">
-								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-                  	<div class="row-fluid">
-                        <table >
-                  			<tr>
-                  				<td>
-                  				 <div class="box-content">
-										<ul>
-										  <c:forEach items="${taskListOn}" var="task">
-										 	 <li class="taskName" value="${task.id}"><a href="#"><span title=".icon  .icon-red  .icon-unlocked " class="icon icon-red icon-unlocked"></span>${task.taskname}</a></li>
-										   </c:forEach>
-										</ul>           
-								</div>
-                  				</td>
-                  				<td width="90px"></td>
-                  				<td>
-                  					<table id="beginTable" style="display:none">
-                  					</table>
-                  				</td>
-                  			</tr>
-                  		</table>
-                    </div>                   
-                  </div>
-				</div>
-				 <div class="box span10">
-					<div class="box-header well" data-original-title="">
-						<span class="label label-warning" style="font-size:16px;padding:3px">冻结的任务</span>
-						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
-						<div class="box-icon">
-								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-                  	<div class="row-fluid">
-                        <table >
-                  			<tr>
-                  				<td>
-                  				 <div class="box-content">
-										<ul>
-										  <c:forEach items="${taskListClose}" var="task">
-										 	 <li class="taskName" value="${task.id}"><a href="#"><span title=".icon  .icon-red  .icon-locked " class="icon icon-red icon-locked"></span>${task.taskname}</a></li>
-										   </c:forEach>
-										</ul>           
-								</div>
-                  				</td>
-                  				<td width="90px">
-                  				</td>
-                  				<td>
-                  				</td>
-                  			</tr>
-                  		</table>                    
-                  	</div>                   
-                  </div>
-				</div>
-				 <div class="box span10">
-					<div class="box-header well" data-original-title="">
-						<span class="label label-success" style="font-size:16px;padding:3px">完成的任务</span>
-						<span class="btn btn-primary" style="line-height: 14px;padding-bottom: 4px;margin-bottom: 6px;display:none">查看任务</span>
-						<div class="box-icon">
-								<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a> <a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
-					</div>
-					<div class="box-content">
-                  	<div class="row-fluid">
-                        <table >
-                  			<tr>
-                  				<td>
-                  				 <div class="box-content">
-										<ul>
-										  <c:forEach items="${taskListOver}" var="task">
-										 	 <li class="taskName" value="${task.id}"><a href="#"><span title=".icon  .icon-green  .icon-check " class="icon icon-green icon-check"></span>${task.taskname}</a></li>
-										   </c:forEach>
-										</ul>           
-								</div>
-                  				</td>
-                  				<td width="90px"></td>
-                  				<td>
-                  					<table id="tab_detail" style="display:none">
-                  					</table>
-                  				</td>
-                  			</tr>
-                  		</table>
-                    </div>                   
-                  </div>
-				</div>
-		
+<!DOCTYPE HTML>
+<html>
+<!--  header-->
+<jsp:include page="header.html" flush="true" />
+<!-- header End -->
+<div class="page with-sidebar">
+	<!-- header -->
+	<div class="page-header">
+		<div class="page-header-content">
+			<h1>
+				<i class="icon-arrow-down-3 fg-color-red"></i> 首页<small>任务列表</small>
+			</h1>
+		</div>
 	</div>
+	<!-- header End -->
+	<!-- leftMenu -->
+	<div class="page-sidebar">
+		<ul class="sub-menu light">
+			<li class="sticker sticker-color-blue" data-for-id="NotBegin"><a
+				href="#">未开始任务</a></li>
+			<li class="sticker sticker-color-yellow" data-for-id="Begin"><a
+				href="#">进行中任务</a></li>
+			<li class="sticker sticker-color-green" data-for-id="Finish"><a
+				href="#">已完成的任务</a></li>
+			<li class="sticker sticker-color-red" data-for-id="blocked"><a
+				href="#">冻结的任务</a></li>
+		</ul>
 	</div>
-<jsp:include page="footer.jsp" flush="true" />
+	<!-- leftMenu End -->
+	<div class="page-region">
+		<!-- 未开始  -->
+		<div class="page-region-content" id="NotBegin">
+			<ul class="accordion" data-role="accordion">
+				<li class="active"><a href="#"><h3>未开始的任务</h3></a>
+					<div>
+						<ul class="listview fluid">
+							<c:forEach items="${taskListInit}" var="task">
+								<li class="" value="${task.id}">
+									<div class="title">任务名称：${task.taskName}</div>
+									<div>
+										任务描述：
+										<blockquote>${task.taskInfo}</blockquote>
+										任务进度:
+										<div class="progress-bar">
+											<div class="bar bg-color-green"
+												style="width: ${task.taskPercent}%"></div>
+											<div class="bar bg-color-yellow"
+												style="width: ${100-task.taskPercent}%"></div>
+										</div>
+										<p class="place-right">
+											<strong>发起人:<a>${task.taskMaker}</a></strong>
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</div></li>
+			</ul>
+		</div>
+		<!-- 未开始 end -->
+		<!-- 进行中  -->
+		<div class="page-region-content" id="Begin" style="display: none">
+			<ul class="accordion" data-role="accordion">
+				<li class="active"><a href="#"><h3>进行中的任务</h3></a>
+					<div>
+						<ul class="listview fluid">
+							<c:forEach items="${taskListOn}" var="task">
+								<li class="selected"
+									value="${task.id}">
+									<div class="title">任务名称：${task.taskName}</div>
+									<div>
+										任务描述：
+										<blockquote>${task.taskInfo}</blockquote>
+										任务进度:
+										<div class="progress-bar">
+											<div class="bar bg-color-green"
+												style="width: ${task.taskPercent}%"></div>
+												<div class="bar bg-color-yellow"
+												style="width: ${100-task.taskPercent}%"></div>
+										</div>
+										<p class="place-right">
+											<strong>发起人:<a>${task.taskMaker}</a></strong>
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</div></li>
+			</ul>
+		</div>
+		<!-- 进行中 end -->
+		<!-- 完成的  -->
+		<div class="page-region-content" id="Finish" style="display: none">
+			<ul class="accordion" data-role="accordion">
+				<li class="active"><a href="#"><h3>已完成的任务</h3></a>
+					<div>
+						<ul class="listview fluid">
+							<c:forEach items="${taskListOn}" var="task">
+								<li class="bg-color-green fg-color-white" value="${task.id}">
+									<div class="title">任务名称：${task.taskName}</div>
+									<div>
+										任务描述：
+										<blockquote>${task.taskInfo}</blockquote>
+										任务进度:
+										<div class="progress-bar">
+											<div class="bar bg-color-yellow" style="width: 100%"></div>
+										</div>
+										<p class="place-right">
+											<strong>发起人:<a class="fg-color-white">${task.taskMaker}</a></strong>
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</div></li>
+			</ul>
+		</div>
+		<!-- 完成  end -->
+		<!-- 冻结  -->
+		<div class="page-region-content" id="blocked" style="display: none">
+			<ul class="accordion" data-role="accordion">
+				<li class="active"><a href="#"><h3>冻结的任务</h3></a>
+					<div>
+						<ul class="listview fluid">
+							<c:forEach items="${taskListOn}" var="task">
+								<li class="bg-color-red fg-color-white" value="${task.id}">
+									<div class="title">任务名称：${task.taskName}</div>
+									<div>
+										任务描述：
+										<blockquote class="bg-color-blueLight">${task.taskInfo}</blockquote>
+										任务进度:
+										<div class="progress-bar">
+											<div class="bar bg-color-green"
+												style="width: ${task.taskPercent}%"></div>
+											<div class="bar bg-color-yellow"
+												style="width: ${100-task.taskPercent}%"></div>
+										</div>
+										<p class="place-right">
+											<strong>发起人:<a class="fg-color-white">${task.taskMaker}</a></strong>
+										</p>
+									</div>
+								</li>
+							</c:forEach>
+						</ul>
+					</div></li>
+			</ul>
+		</div>
+		<!-- 冻结 end -->
+	</div>
+</div>
+<!-- footer -->
+<jsp:include page="footer.html" flush="true" />
+<!-- footerEnd -->
 <script type="text/javascript">
-	$("document").ready(function(){
-		var tid=-1;
-		$(".taskName").click(function(){
-			var _self=this;
-			tid = _self.value;
-			$(_self).parent().parent().parent().parent().parent().parent().parent().parent().parent().find("span:eq(1)").show();
-			$.ajax({
-				url:"taskInfo",
-				type:"post",
-				data:{"tid":this.value},
-				success:function(Task){
-				   var html='<table class="table-bordered" style="width: 500px;">'+
-							'<tr><td align="right">任务描述：</td><td align="left">'+Task.taskmanager+'</td></tr>'+
-							'<tr><td align="right">计划完成时间：</td><td align="left">'+Task.play_time+'</td></tr>'+
-							'<tr><td align="right">派发人：</td><td align="left">'+Task.taskmaker+'</td></tr>'+
-							'<tr><td align="right">完成进度：</td><td align="left">'+
-							'<div class="progress progress-striped progress-success active">'+
-								'<div class="bar" style="width: '+Task.taskpercent+'%;"></div>'+
-							'</div>'+
-							'</td></tr>'+
-							'</table>';
-						
-						$(_self).parent().parent().parent().parent().find("td:eq(2)").html(html);	
-						for(var i=0;i<_self.parentNode.childElementCount;i++){
-							$(_self.parentNode.children[i].children[0]).css("background","#fff");
-						}
-						$(_self.childNodes[0]).css("background","#B0E0E6");
-   				},
-				error:function(){
-					alert("error");
-				}
-			});
+function toPlace(location){
+	$('html, body, .content').animate({scrollTop: location},1000);
+}
+	$("document").ready(function() {
+		$(".sub-menu li").click(function() {
+			var obj=$(this),
+			__selfName=$(this).attr("data-for-id"),
+			$hover_active=$("#"+__selfName);
+			if($hover_active.is(":hidden")){
+				$(".page-region-content").each(function(){
+					$(this).fadeOut(500);
+				});
+				setTimeout("$('#"+__selfName+"').fadeIn(1000,toPlace("+obj.offset().top+"))",1000);
+			}else{
+				return;
+			}
 		});
-		$(".btn.btn-primary").click(function(){
-			 window.location.href="taskInfo/show/"+tid;
-		});
-		
 	});
 </script>
-
 </body>
 </html>
