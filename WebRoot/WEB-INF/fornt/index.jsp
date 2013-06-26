@@ -40,7 +40,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListInit}" var="task">
-								<li class="" value="${task.id}">
+								<li class="taskList" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -70,7 +70,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListOn}" var="task">
-								<li class="selected"
+								<li class="taskList selected"
 									value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -101,7 +101,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListOn}" var="task">
-								<li class="bg-color-green fg-color-white" value="${task.id}">
+								<li class="taskList bg-color-green fg-color-white" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -128,7 +128,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListOn}" var="task">
-								<li class="bg-color-red fg-color-white" value="${task.id}">
+								<li class="taskList bg-color-red fg-color-white" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -167,12 +167,18 @@ function toPlace(location){
 			$hover_active=$("#"+__selfName);
 			if($hover_active.is(":hidden")){
 				$(".page-region-content").each(function(){
-					$(this).fadeOut(500);
+					if(this.id != __selfName){
+					  	$(this).addClass('animated rotateOut');
+					}else{
+						$(this).addClass('animated bounceInUp');
+					}
 				});
-				setTimeout("$('#"+__selfName+"').fadeIn(1000,toPlace("+obj.offset().top+"))",1000);
 			}else{
 				return;
 			}
+		});
+		$(".taskList").click(function(){
+			window.location.href="taskInfo/show/"+$(this).val();
 		});
 	});
 </script>
