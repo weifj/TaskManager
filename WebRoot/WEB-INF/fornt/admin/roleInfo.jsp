@@ -24,6 +24,7 @@
 				<div class="row-fluid sortable ui-sortable">
 					<div class="box-content">
 							<form class="form-horizontal" action="admin/update" method="post">
+							<input type="hidden" value=${roleInfo.id} name="user.id" />
 								<fieldset>
 									<div class="control-group ">
 										<label class="control-label" for="user.uname">用户名</label>
@@ -70,6 +71,20 @@
 									<button type="submit" class="btn">更新</button>
 									<button type="button" class="btn" onclick="window.location='admin'">返回</button>
 								</div>
+						<c:choose>
+							<c:when test="${update_success_msg!='' && update_success_msg!= null}">
+								<div class="alert alert-success span3">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong> ${update_success_msg} </strong>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="alert alert-info span3">
+									<button type="button" class="close" data-dismiss="alert">×</button>
+									<strong>注意</strong> 请正确填写以上相关内容.
+								</div>
+							</c:otherwise>
+						</c:choose>
 							</form>
 						</div>
 				</div>
