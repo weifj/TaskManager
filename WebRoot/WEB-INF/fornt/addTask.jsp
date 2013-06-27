@@ -6,7 +6,7 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<jsp:include page="head.jsp" flush="true">
+<jsp:include page="header.html" flush="true">
 	<jsp:param name="title" value="用户管理前台-任务展示" />
 </jsp:include>
  	<div class="container">
@@ -66,7 +66,7 @@
 
 			</div>
 	</div>
-<jsp:include page="footer.jsp" flush="true" />
+<jsp:include page="footer.html" flush="true" />
 <script type="text/javascript">
 	$("document").ready(function(){
 		var tid=-1;
