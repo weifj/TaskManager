@@ -27,7 +27,7 @@
 				href="#">进行中任务</a></li>
 			<li class="sticker sticker-color-green" data-for-id="Finish"><a
 				href="#">已完成的任务</a></li>
-			<li class="sticker sticker-color-red" data-for-id="blocked"><a
+			<li class="sticker sticker-color-red" data-for-id="Blocked"><a
 				href="#">冻结的任务</a></li>
 		</ul>
 	</div>
@@ -100,7 +100,7 @@
 				<li class="active"><a href="#"><h3>已完成的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
-							<c:forEach items="${taskListOn}" var="task">
+							<c:forEach items="${taskListFinish}" var="task">
 								<li class="bg-color-green fg-color-white" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -122,12 +122,12 @@
 		</div>
 		<!-- 完成  end -->
 		<!-- 冻结  -->
-		<div class="page-region-content" id="blocked" style="display: none">
+		<div class="page-region-content" id="Blocked" style="display: none">
 			<ul class="accordion" data-role="accordion">
 				<li class="active"><a href="#"><h3>冻结的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
-							<c:forEach items="${taskListOn}" var="task">
+							<c:forEach items="${taskListBlocked}" var="task">
 								<li class="bg-color-red fg-color-white" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -173,6 +173,10 @@ function toPlace(location){
 			}else{
 				return;
 			}
+		});
+		$(".title").parent().click(function() {
+			tid=this.value;
+			window.location.href="taskInfo/show/"+tid;
 		});
 	});
 </script>
