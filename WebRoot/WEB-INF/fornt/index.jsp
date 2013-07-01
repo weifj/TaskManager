@@ -184,9 +184,8 @@ function toPlace(location){
 				return;
 			}
 		});
-		$(".title").parent().click(function() {
-			tid=this.value;
-			window.location.href="taskInfo/show/"+tid;
+		$(".taskList").click(function(){
+			window.location.href="taskInfo/show/"+$(this).val();
 		});
 	});
 </script>
