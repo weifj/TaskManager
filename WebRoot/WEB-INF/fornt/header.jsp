@@ -44,7 +44,6 @@
 								class="icon-accessibility"></i></span> 退出</a></li>
 					</c:otherwise>
 				</c:choose>
-					
 				</ul>
 			</div>
 		</div>
