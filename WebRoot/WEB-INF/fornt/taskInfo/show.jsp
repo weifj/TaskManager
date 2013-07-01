@@ -12,7 +12,7 @@
 <html>
 <base href="<%=base%>" />
 <!--  header-->
-<jsp:include page="../header.html" flush="true" />
+<jsp:include page="../header.jsp" flush="true" />
 <!-- header End -->
 <div class="page secondary">
 	<!-- header -->
@@ -25,6 +25,7 @@
 	</div>
 	<div class="page-region">
 		<!-- 任务描述-->
+		
 		<div class="page-region-content" id="NotBegin">
 			<ul class="accordion" data-role="accordion">
 				<li class="active"><a href="#"><h3><li class="icon-book"></li>任务描述</h3></a>
