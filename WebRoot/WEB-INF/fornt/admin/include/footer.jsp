@@ -76,9 +76,7 @@
 <script src="<%=basePath%>js/charisma.js"></script>
 <script type="text/javascript">
 	  (function(){
-	  	var days = ['周日','周一','周二','周三','周四','周五','周六'],
-	  		today= new Date(),
-	  		msg  = '今天是 '+ today.getDate() + "号 " +days[today.getDay()] ;
-	  		$(".nav.nav-tabs.nav-stacked.main-menu").append("<div class='box span10 center'><h5>"+msg+"</h5></div>");
+	  		$(".nav.nav-tabs.nav-stacked.main-menu").append("<div id='systime' class='box span10 left'><h5></h5></div>");
+	  		setInterval("$('#systime h5').html(new Date().toLocaleString()+'<br/> 星期'+'日一二三四五六'.charAt(new Date().getDay()));",1000);
 	  }());
 </script>

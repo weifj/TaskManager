@@ -2,6 +2,7 @@ package com.guotingchao;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
+import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
 import com.guotingchao.route.admin.AdminRoutes;
 import com.guotingchao.route.front.ForntRoutes;
@@ -30,20 +31,21 @@ public class BaseConfig extends JFinalConfig {
 
 	@Override
 	public void configRoute(Routes me) {
-		me.add(new ForntRoutes());
 		me.add(new AdminRoutes());
+		me.add(new ForntRoutes());
 	}
 
 	@Override
 	public void configHandler(Handlers me) {
-//		DruidStatViewHandler dvh = new DruidStatViewHandler("/druid");
-//		me.add(dvh);
+		//		DruidStatViewHandler dvh = new DruidStatViewHandler("/druid");
+		//		me.add(dvh);
 	}
 	/**
 	 *  添加一个全局的拦截器
 	 */
 	@Override
 	public void configInterceptor(Interceptors me) {
+		
 	}
 
 	@Override
@@ -58,6 +60,7 @@ public class BaseConfig extends JFinalConfig {
 		// ActiveRecordPlugin
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
 		arp.addMapping("User", User.class);
+		arp.addMapping("Task", Task.class);
 		me.add(arp);
 
 	}
