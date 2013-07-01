@@ -50,7 +50,11 @@
 							</li>
 							</c:if>
 							<c:forEach items="${taskListInit}" var="task">
+<<<<<<< HEAD
 								<li class="border-color-blue" value="${task.id}">
+=======
+								<li class="taskList" value="${task.id}">
+>>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -80,7 +84,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListOn}" var="task">
-								<li class="selected"
+								<li class="taskList selected"
 									value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -110,8 +114,13 @@
 				<li class="active"><a href="#"><h3>已完成的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
+<<<<<<< HEAD
 							<c:forEach items="${taskListFinish}" var="task">
 								<li class="bg-color-green fg-color-white" value="${task.id}">
+=======
+							<c:forEach items="${taskListOn}" var="task">
+								<li class="taskList bg-color-green fg-color-white" value="${task.id}">
+>>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -137,8 +146,13 @@
 				<li class="active"><a href="#"><h3>冻结的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
+<<<<<<< HEAD
 							<c:forEach items="${taskListBlocked}" var="task">
 								<li class="bg-color-red fg-color-white" value="${task.id}">
+=======
+							<c:forEach items="${taskListOn}" var="task">
+								<li class="taskList bg-color-red fg-color-white" value="${task.id}">
+>>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -177,16 +191,24 @@ function toPlace(location){
 			$hover_active=$("#"+__selfName);
 			if($hover_active.is(":hidden")){
 				$(".page-region-content").each(function(){
-					$(this).fadeOut(500);
+					if(this.id != __selfName){
+					  	$(this).addClass('animated rotateOut');
+					}else{
+						$(this).addClass('animated bounceInUp');
+					}
 				});
-				setTimeout("$('#"+__selfName+"').fadeIn(1000,toPlace("+obj.offset().top+"))",1000);
 			}else{
 				return;
 			}
 		});
+<<<<<<< HEAD
 		$(".title").parent().click(function() {
 			tid=this.value;
 			window.location.href="taskInfo/show/"+tid;
+=======
+		$(".taskList").click(function(){
+			window.location.href="taskInfo/show/"+$(this).val();
+>>>>>>> refs/remotes/origin/gtc
 		});
 	});
 </script>
