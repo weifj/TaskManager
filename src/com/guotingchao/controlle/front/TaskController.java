@@ -14,4 +14,6 @@ public class TaskController extends Controller{
 		log.info("id:"+tid);
 		renderJson(Task.taskDao.findTaskById(tid));
 	}
+	
+
 }

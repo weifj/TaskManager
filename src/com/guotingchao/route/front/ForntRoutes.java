@@ -12,10 +12,10 @@ public class ForntRoutes extends Routes {
 	
 	@Override
 	public void config() {
+		add("/taskInfo/show",ShowController.class);
 		add("/addTask",TaskAddController.class);
 		add("/validate",ValidateController.class);
 		add("/login",LoginController.class);
-		add("/taskInfo/show",ShowController.class);
 		add("/taskInfo",TaskController.class);
 		add("/",IndexController.class);
 	}
