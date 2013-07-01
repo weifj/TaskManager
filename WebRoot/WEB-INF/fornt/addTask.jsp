@@ -24,7 +24,7 @@
 				<table>
 					<tr>
 						<td style="text-align: right;">派发人:</td>
-						<td style="text-align: left;"><input type="text" value="${user_info.attrs['uname']}" disabled class="span4"/></td>
+						<td style="text-align: left;"><input type="text" id="taskMaker" value="${user_info.attrs['uname']}" disabled class="span4"/></td>
 					</tr>
 					<tr>
 						<td style="text-align: right;">任务名称:</td>
@@ -39,7 +39,7 @@
 						<td style="text-align: right;">任务描述：</td>
 						<td style="text-align: left;">
 							<div class="input-control textarea span4">
-								<textarea placeholder="在这描述任务"></textarea>
+								<textarea placeholder="在这描述任务" id="taskInfo"></textarea>
 							</div>
 						</td>
 					</tr>
@@ -47,7 +47,7 @@
 						<td style="text-align: right;">计划时间：</td>
 						<td style="text-align: left;">
 							<div class="input-control text datepicker span4" id="picker1" data-param-lang="zh-cn">
-								<input type="text"/>
+								<input type="text" id="paly_Time"/>
 								<button class="btn-date"></button>
 							</div>
 						</td>
@@ -69,13 +69,21 @@
 						<td style="text-align: right;">指定人：</td>
 						<td style="text-align: left;">
 							<input type="text" id="username" />
-							<select onchange="change()">
+							<select id="uname">
 							<c:forEach items="${userList}" var="user">
 								<option value="${user.uname}">${user.uname }</option>
 							</c:forEach>
 							</select>
 						</td>
 					</tr>
+					<tr>
+						<td style="text-align: right;"><input type="button" id="addTask" value="添加"/></td>
+						<td style="text-align: left;">
+							<input type="button"  value="取消" onclick="javascript:window.history.go(-1)"/>
+							<span id="message"></span>
+						</td>
+					</tr>
+					
 				</table>
 			</div>
 		</div>
@@ -84,9 +92,37 @@
 <jsp:include page="footer.html" flush="true" />
 <script type="text/javascript">
 	$("document").ready(function(){
-		function change({
-			alert();
+		var nameStr="";
+		$("#uname").change(function(){
+			nameStr+=this.value+" ";
+			this.remove();
+			$("#username").val(nameStr);
 		});
+		//$(".rating").children()[1] 遍历选中的星星
+		$("#addTask").click(function(){
+			$.ajax({
+				url: "taskAdd",
+				type: "POST",
+				data: {
+					"taskMaker":$("#taskMaker").val(),
+					"taskname":$("#taskname").val(),
+					"taskInfo":$("#taskInfo").val(),
+					"paly_Time":$("#paly_Time").val(),
+					"username":$("#username").val(),
+				},
+				beforeSend: function() {
+					$("#message").html("请稍后...");
+					return true;
+				},
+				success: function(flag) {
+						if(flag){
+							window.location="";
+						}else{
+							$("#message").html("添加失败");
+						}
+				}
+			});		
+		}); 
 	});
 </script>
 
