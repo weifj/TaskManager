@@ -17,8 +17,8 @@ public class IndexController extends Controller{
 	public void index(){
 		setAttr("taskListInit", Task.taskDao.findTaskListByType(0));
 		setAttr("taskListOn", Task.taskDao.findTaskListByType(1));
-		setAttr("taskListOver", Task.taskDao.findTaskListByType(2));
-		setAttr("taskListClose", Task.taskDao.findTaskListByType(-1));
+		setAttr("taskListFinish", Task.taskDao.findTaskListByType(2));
+		setAttr("taskListBlocked", Task.taskDao.findTaskListByType(-1));
 		render("index.jsp");
 	}
 	
