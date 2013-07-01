@@ -39,6 +39,16 @@
 				<li class="active"><a href="#"><h3>未开始的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
+							<c:if test="${user_info.attrs['uname']!=null}">
+							<li class="border-color-blue">
+							<a href="addTask">
+								<div class="title" style="text-align: center;"><b>新建任务</b></div>
+								<div style="height: 107px; text-align:center;">
+										<i class="icon-plus-2" style="font-size: 50px;padding-top: 20px;"></i>
+								</div>
+							</a>
+							</li>
+							</c:if>
 							<c:forEach items="${taskListInit}" var="task">
 								<li class="border-color-blue" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
@@ -58,16 +68,6 @@
 									</div>
 								</li>
 							</c:forEach>
-							<c:if test="${user_info.attrs['uname']!=null}">
-							<li class="border-color-blue">
-							<a href="addTask">
-								<div class="title" style="text-align: center;"><b>新建任务</b></div>
-								<div style="height: 107px; text-align:center;">
-										<i class="icon-plus-2" style="font-size: 50px;padding-top: 20px;"></i>
-								</div>
-							</a>
-							</li>
-							</c:if>
 						</ul>
 					</div></li>
 			</ul>
