@@ -1,5 +1,6 @@
 package com.guotingchao.route.front;
 
+import com.guotingchao.controlle.front.AjaxAddTaskController;
 import com.guotingchao.controlle.front.IndexController;
 import com.guotingchao.controlle.front.LoginController;
 import com.guotingchao.controlle.front.ShowController;
@@ -13,6 +14,7 @@ public class ForntRoutes extends Routes {
 	@Override
 	public void config() {
 		add("/taskInfo/show",ShowController.class);
+		add("/taskAdd",AjaxAddTaskController.class);
 		add("/addTask",TaskAddController.class);
 		add("/validate",ValidateController.class);
 		add("/login",LoginController.class);
