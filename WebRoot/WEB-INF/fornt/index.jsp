@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <!--  header-->
-<jsp:include page="header.html" flush="true" />
+<jsp:include page="header.jsp" flush="true" />
 <!-- header End -->
 <div class="page with-sidebar">
 	<!-- header -->
@@ -40,7 +40,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListInit}" var="task">
-								<li class="" value="${task.id}">
+								<li class="border-color-blue" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -58,6 +58,16 @@
 									</div>
 								</li>
 							</c:forEach>
+							<c:if test="${user_info.attrs['uname']!=null}">
+							<li class="border-color-blue">
+							<a href="addTask">
+								<div class="title" style="text-align: center;"><b>新建任务</b></div>
+								<div style="height: 107px; text-align:center;">
+										<i class="icon-plus-2" style="font-size: 50px;padding-top: 20px;"></i>
+								</div>
+							</a>
+							</li>
+							</c:if>
 						</ul>
 					</div></li>
 			</ul>
