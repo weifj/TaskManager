@@ -68,16 +68,17 @@
          <div id="pboxcont">
          <h1 style="color:white;">&lt;User&gt;</h1>
            <div class="input-control text span4" id="pworddiv">
-         		<input type="text" />
+         		<input type="text" name="user.uname" id="uname" value="" />
             </div>
             <h3 style="color:white;">&lt;Pass&gt;</h3>
             <div class="input-control password span4" id="pworddiv">
-               <input type="password" />
+               <input type="password"  name="user.upass" id="upass" value="" />
                <button class="btn-reveal"></button>
             </div>
              <div class="span4" style="text-align: center;">
-               <input type="submit" value="登陆"/>
-               <input type="reset"  value="重置"/>
+               <input type="button" id="login" value="登陆"/>
+               <input type="button"  value="取消" onclick="javascript:window.history.go(-1)"/>
+               <p><span id="message"/></p>
             </div>
          </div>
       </div>
@@ -87,6 +88,25 @@
 <!-- footerEnd -->
 <script type="text/javascript">
 	$("document").ready(function(){
+		$("#login").click(function(){
+			
+			$.ajax({
+				url: "validate",
+				type: "POST",
+				data: {"uname":$("#uname").val(),"upass":$("#upass").val()},
+				beforeSend: function() {
+					$("#message").html("系统正在登录，请稍后...");
+					return true;
+				},
+				success: function(flag) {
+						if(flag){
+							window.location="";
+						}else{
+							$("#message").html("用户名或密码错误！");
+						}
+				}
+			});		
+		}); 
 	});
 </script>
 </body>
