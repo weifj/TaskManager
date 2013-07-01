@@ -10,7 +10,7 @@ public interface ITaskDao{
 	/**
 	 * 通过任务类型获取任务列表
 	 * @param taskType
-	 * @return List
+	 * @return List<Task>
 	 */
 	public List<Task> findTaskListByType(int taskType);
 	/**
