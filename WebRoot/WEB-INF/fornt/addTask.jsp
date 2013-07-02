@@ -27,9 +27,10 @@
 				<table>
 					<tr>
 						<td style="text-align: right;">派发人:</td>
-						<td style="text-align: left;"><input type="text"
-							id="task.taskMaker" value="${user_info.attrs['uname']}" disabled
-							class="span4" value="" name="task.taskMaker" /></td>
+						<td style="text-align: left;">
+						<input type="text" id="task.taskMaker" value="${user_info.attrs['uname']}" disabled
+							class="span4" value="" name="task.taskMaker" />
+						</td>
 					</tr>
 					<tr>
 						<td style="text-align: right;">任务名称:</td>
