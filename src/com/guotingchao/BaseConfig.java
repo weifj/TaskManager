@@ -61,7 +61,7 @@ public class BaseConfig extends JFinalConfig {
 		// ActiveRecordPlugin
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
 		arp.addMapping("User", User.class);
-		arp.addMapping("Task", Task.class);
+		arp.addMapping("Task", Task.class); 
 		arp.addMapping("T_user_task", T_user_task.class);
 		me.add(arp);
 
