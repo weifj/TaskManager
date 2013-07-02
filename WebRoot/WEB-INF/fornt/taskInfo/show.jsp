@@ -42,8 +42,7 @@
 								<div class="title"><h4>重要指数</h4></div>
 								<div>
 									<blockquote>
-									<div class="rating" date-role="rating" data-param-vote="off" data-param-rating="${task.rank}" data-param-stars="5">
-										
+									<div class="rating" date-role="rating" data-param-vote="off" data-param-rating="${task.rank}" data-param-stars="5"></div>
 									</blockquote>
 								</div>
 							</li>
