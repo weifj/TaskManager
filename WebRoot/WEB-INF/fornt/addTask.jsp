@@ -28,7 +28,7 @@
 					<tr>
 						<td style="text-align: right;">派发人:</td>
 						<td style="text-align: left;">
-						<input type="text" id="task.taskMaker" value="${user_info.attrs['uname']}" disabled
+						<input type="text" id="task.taskMaker" value="${user_info.attrs['uname']}" readonly
 							class="span4" value="" name="task.taskMaker" />
 						</td>
 					</tr>
@@ -52,9 +52,10 @@
 					<tr>
 						<td style="text-align: right;">计划时间：</td>
 						<td style="text-align: left;">
+							<input type="hidden" id="task.play_Time" name="task.play_Time" value=""/>
 							<div class="input-control text datepicker span4" id="picker1"
 								data-param-lang="zh-cn">
-								<input type="text" id="task.play_Time" value=""/>
+								<input type="text" id="playTime"  value=""/>
 								<button class="btn-date"></button>
 							</div>
 						</td>
@@ -62,6 +63,7 @@
 					<tr>
 						<td style="text-align: right;">重要指数：</td>
 						<td style="text-align: left;">
+							<input type="hidden" id="task.rank" name="task.rank"/>
 							<div class="rating" date-role="rating" id="rating">
 								<a href="javascript:void(0)" class=""></a> <a
 									href="javascript:void(0)" class=""></a> <a
@@ -93,7 +95,6 @@
 					</tr>
 
 				</table>
-				<input type="hidden" id="task.rank"/>
 				<c:if test="${taskName_error!=null || uid_error!=null}">				
 					<div class="notices">
 						<div class="bg-color-yellow">
@@ -129,7 +130,12 @@
 		});
 		
 		$("#addTask").click(function() {
-			$("#task.rank").val($("#rating .rated").length);
+			$("#task\\.rank").val($("#rating .rated").length);
+			var playtime = $("#playTime").val();
+			playtime=playtime.replace("年","-");
+			playtime=playtime.replace("月", "-");
+			playtime=playtime.replace("日", "");
+			$("#task\\.play_Time").val(playtime);
 			$("#addTaskFrom").submit();
 		});
 		
