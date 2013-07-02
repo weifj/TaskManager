@@ -2,6 +2,7 @@ package com.guotingchao;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
+import com.guotingchao.model.impl.T_user_task;
 import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
 import com.guotingchao.route.admin.AdminRoutes;
@@ -61,6 +62,7 @@ public class BaseConfig extends JFinalConfig {
 		ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
 		arp.addMapping("User", User.class);
 		arp.addMapping("Task", Task.class);
+		arp.addMapping("T_user_task", T_user_task.class);
 		me.add(arp);
 
 	}
