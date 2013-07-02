@@ -19,7 +19,7 @@
 	<div class="page-header">
 		<div class="page-header-content">
 			<h1>
-				<i class="icon-arrow-down-3 fg-color-red"></i>${task.taskName}<small>任务详细</small>
+				<a href="javascript:window.history.go(-1);"><i class="icon-arrow-left-3 fg-color-red page-back" style="font-size: 60px;"></i> </a>${task.taskName}<small>任务详细</small>
 			</h1>
 		</div>
 	</div>
@@ -42,14 +42,8 @@
 								<div class="title"><h4>重要指数</h4></div>
 								<div>
 									<blockquote>
-										<span style="font-size: 30px;color: red;">
-										<c:forEach begin="1" end="${task.rank}" step="1">
-											★
-										</c:forEach>
-										<c:forEach begin="1" end="${5-task.rank}" step="1">
-											☆
-										</c:forEach>
-										</span>
+									<div class="rating" date-role="rating" data-param-vote="off" data-param-rating="${task.rank}" data-param-stars="5">
+										
 									</blockquote>
 								</div>
 							</li>

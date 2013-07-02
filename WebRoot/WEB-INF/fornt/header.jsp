@@ -17,6 +17,7 @@
 <link href="./css/modern.css" rel="stylesheet">
 <link href="./css/modern-responsive.css" rel="stylesheet">
 <link href="./css/site.css" rel="stylesheet">
+<link href="./css/animate.min.css" rel="stylesheet">
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
@@ -44,6 +45,7 @@
 								class="icon-accessibility"></i></span> 退出</a></li>
 					</c:otherwise>
 				</c:choose>
+					
 				</ul>
 			</div>
 		</div>

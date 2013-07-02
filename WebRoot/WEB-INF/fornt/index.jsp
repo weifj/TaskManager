@@ -27,7 +27,7 @@
 				href="#">进行中任务</a></li>
 			<li class="sticker sticker-color-green" data-for-id="Finish"><a
 				href="#">已完成的任务</a></li>
-			<li class="sticker sticker-color-red" data-for-id="Blocked"><a
+			<li class="sticker sticker-color-red" data-for-id="blocked"><a
 				href="#">冻结的任务</a></li>
 		</ul>
 	</div>
@@ -50,11 +50,7 @@
 							</li>
 							</c:if>
 							<c:forEach items="${taskListInit}" var="task">
-<<<<<<< HEAD
 								<li class="border-color-blue" value="${task.id}">
-=======
-								<li class="taskList" value="${task.id}">
->>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -114,13 +110,8 @@
 				<li class="active"><a href="#"><h3>已完成的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
-<<<<<<< HEAD
-							<c:forEach items="${taskListFinish}" var="task">
-								<li class="bg-color-green fg-color-white" value="${task.id}">
-=======
 							<c:forEach items="${taskListOn}" var="task">
 								<li class="taskList bg-color-green fg-color-white" value="${task.id}">
->>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -141,18 +132,13 @@
 		</div>
 		<!-- 完成  end -->
 		<!-- 冻结  -->
-		<div class="page-region-content" id="Blocked" style="display: none">
+		<div class="page-region-content" id="blocked" style="display: none">
 			<ul class="accordion" data-role="accordion">
 				<li class="active"><a href="#"><h3>冻结的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
-<<<<<<< HEAD
-							<c:forEach items="${taskListBlocked}" var="task">
-								<li class="bg-color-red fg-color-white" value="${task.id}">
-=======
 							<c:forEach items="${taskListOn}" var="task">
 								<li class="taskList bg-color-red fg-color-white" value="${task.id}">
->>>>>>> refs/remotes/origin/gtc
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
 										任务描述：
@@ -186,29 +172,27 @@ function toPlace(location){
 }
 	$("document").ready(function() {
 		$(".sub-menu li").click(function() {
-			var obj=$(this),
-			__selfName=$(this).attr("data-for-id"),
+			var __selfName=$(this).attr("data-for-id"),
 			$hover_active=$("#"+__selfName);
 			if($hover_active.is(":hidden")){
 				$(".page-region-content").each(function(){
 					if(this.id != __selfName){
-					  	$(this).addClass('animated rotateOut');
-					}else{
-						$(this).addClass('animated bounceInUp');
+						$(this).css("display","none");
 					}
 				});
+				$("#"+__selfName).addClass('animated rotateIn');
+				$("#"+__selfName).css("display","block");
 			}else{
 				return;
 			}
 		});
-<<<<<<< HEAD
 		$(".title").parent().click(function() {
 			tid=this.value;
 			window.location.href="taskInfo/show/"+tid;
-=======
+		});
+		
 		$(".taskList").click(function(){
 			window.location.href="taskInfo/show/"+$(this).val();
->>>>>>> refs/remotes/origin/gtc
 		});
 	});
 </script>
