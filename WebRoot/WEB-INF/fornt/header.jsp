@@ -18,6 +18,7 @@
 <link href="./css/modern-responsive.css" rel="stylesheet">
 <link href="./css/site.css" rel="stylesheet">
 <link href="./css/animate.min.css" rel="stylesheet">
+<script type="text/javascript" src="./js/jquery-1.9.0.min.js"></script>
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="//cdnjs.bootcss.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
