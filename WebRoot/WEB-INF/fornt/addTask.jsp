@@ -53,10 +53,10 @@
 						<td style="text-align: right;">计划时间：</td>
 						<td style="text-align: left;">
 							<input type="hidden" id="task.play_Time" name="task.play_Time" value=""/>
-							<div class="input-control text datepicker span4" id="picker1"
+							<div class="input-control text datepicker span4" id="picker1" data-Role="datepicker" 
 								data-param-lang="zh-cn">
-								<input type="text" id="playTime"  value=""/>
-								<button class="btn-date"></button>
+								<input  type="text" id="playTime" value=""/>
+								<button onclick="return false;" class="btn-date"></button>
 							</div>
 						</td>
 					</tr>
@@ -112,7 +112,6 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="footer.html" flush="true" />
 <script type="text/javascript">
 
 		var nameStr=valueStr = "";
@@ -144,6 +143,6 @@
 		});
 	
 </script>
-
+<jsp:include page="footer.html" flush="true" />
 </body>
 </html>
