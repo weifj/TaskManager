@@ -182,6 +182,19 @@ hr {
     .metrouicss .accordion li ul{margin-left:0;}
     .metrouicss .page {margin:  40px auto;}
 }
+.pushResult.message-dialog.bg-color-green{
+		position: relative;
+		width: 30%;
+		left: 40%;
+}
+@media (max-width: 966px){
+	.pushResult.message-dialog.bg-color-green{
+		position: relative;
+		top: 10%;
+		width: 51%;
+		left: 26%;
+	}	
+}
 .post_content {
     text-align: justify;
 }
