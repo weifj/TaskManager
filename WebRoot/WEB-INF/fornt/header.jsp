@@ -28,7 +28,7 @@
 <div class="page">
 		<div class="nav-bar fixed-top">
 			<div class="nav-bar-inner padding10">
-				<span class="pull-menu"></span> <a href="/"><span
+				<span class="pull-menu"></span> <a href="<%=basePath%>"><span
 					class="element brand">任务管理平台</span></a>
 				<ul class="menu place-right">
 				
@@ -40,9 +40,9 @@
 								class="icon-accessibility"></i></span> 注册</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href=""><span class="icon"><i
+						<li><a href="#"><span class="icon"><i
 								class="icon-user-2"></i></span>${user_info.attrs['uname']}</a></li>
-					<li><a href="#"><span class="icon"><i
+					<li><a href="loginOut"><span class="icon"><i
 								class="icon-accessibility"></i></span> 退出</a></li>
 					</c:otherwise>
 				</c:choose>
