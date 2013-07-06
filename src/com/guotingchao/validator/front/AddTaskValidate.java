@@ -14,13 +14,13 @@ public class AddTaskValidate extends Validator{
 	@Override
 	protected void handleError(Controller c) {
 		c.keepModel(User.class);
-		c.render("../addTask.jsp");
+		c.render("addTask.jsp");
 	}
 
 	@Override
 	protected void validate(Controller c) {
-		validateRequired("task.taskName", "taskName_error", "请输入任务名称");
-		validateRequired("user.id", "uid_error", "请选择指定人");
+		validateRequired("task.taskName", "taskName_error", "*请输入任务名称");
+		validateRequired("user.id", "uid_error", "*请选择指定人");
 	}
 	
 }
