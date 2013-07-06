@@ -16,7 +16,7 @@ public class LoginValidate extends Validator{
 	@Override
 	protected void handleError(Controller c) {
 		c.keepModel(User.class);
-		c.render("../login.jsp");
+		c.render("login.jsp");
 	}
 
 	@Override
@@ -27,7 +27,11 @@ public class LoginValidate extends Validator{
 		String upass = c.getPara("user.upass");
 		boolean checkFlag  =  checkIdenting(uname,upass,c.getSession());
 		if(checkFlag){
-			c.redirect("/");
+			if(c.getSessionAttr("actionKey")!=null){
+				c.redirect((String) c.getSessionAttr("actionKey"));
+			}else{
+				c.redirect("");
+			}
 		}else{
 			c.setAttr("login_error", "账户或密码错误");
 			handleError(c);
