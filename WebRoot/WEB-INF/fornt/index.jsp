@@ -12,7 +12,7 @@
 	<!-- header -->
 	<div class="page-header">
 		<div class="page-header-content">
-			<h1>
+			<h1> 
 				<i class="icon-arrow-down-3 fg-color-red"></i> 首页<small>任务列表</small>
 			</h1>
 		</div>
@@ -21,6 +21,10 @@
 	<!-- leftMenu -->
 	<div class="page-sidebar">
 		<ul class="sub-menu light">
+			<c:if test="${user_info.attrs['uname']!=null}">
+				<li class="sticker sticker-color-black" data-for-id="Operate"><a
+				href="#">可操作任务</a></li>
+			</c:if>
 			<li class="sticker sticker-color-blue" data-for-id="NotBegin"><a
 				href="#">未开始任务</a></li>
 			<li class="sticker sticker-color-yellow" data-for-id="Begin"><a
@@ -33,6 +37,38 @@
 	</div>
 	<!-- leftMenu End -->
 	<div class="page-region">
+		<!-- 可操作任务 -->
+		<div class="page-region-content" id="Operate" style="display: none">
+			<ul class="accordion" data-role="accordion">
+				<li class="active"><a href="#"><h3>可操做的任务</h3></a><button class="button disabled"  id="update" style="bottom: 32px;margin-left: 550px;">更新</button>	 
+					<div>
+						<ul class="listview fluid">
+							<c:forEach items="${taskListAll}" var="task">
+								<c:if test="${user_info.attrs['uname']==task.taskMaker}">
+								<li class="border-color-blue" value="${task.id}" >
+									<div class="Operate">任务名称：${task.taskName}</div>
+									<div>
+										任务描述：
+										<blockquote>${task.taskInfo}</blockquote>
+										任务进度:
+										<div class="progress-bar">
+											<div class="bar bg-color-green"
+												style="width: ${task.taskPercent}%"></div>
+											<div class="bar bg-color-yellow"
+												style="width: ${100-task.taskPercent}%"></div>
+										</div>
+										<p class="place-right">
+											<strong>发起人:<a>${task.taskMaker}</a></strong>
+										</p>
+									</div>
+								</li>
+								</c:if>
+							</c:forEach>
+						</ul>
+					</div></li>
+			</ul>
+		</div>
+		<!-- 可操作的 end -->
 		<!-- 未开始  -->
 		<div class="page-region-content" id="NotBegin">
 			<ul class="accordion" data-role="accordion">
@@ -137,7 +173,7 @@
 				<li class="active"><a href="#"><h3>冻结的任务</h3></a>
 					<div>
 						<ul class="listview fluid">
-							<c:forEach items="${taskListOn}" var="task">
+							<c:forEach items="${taskListBlocked}" var="task">
 								<li class="taskList bg-color-red fg-color-white" value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -187,13 +223,27 @@ function toPlace(location){
 			}
 		});
 		$(".title").parent().click(function() {
-			tid=this.value;
-			window.location.href="taskInfo/show/"+tid;
+			window.location.href="taskInfo/show/"+this.value;
 		});
 		
-		$(".taskList").click(function(){
-			window.location.href="taskInfo/show/"+$(this).val();
+	
+		var operate =$(".Operate").parent();
+		var tid;
+		operate.click(function() {
+			for(i=0;i<operate.length;i++){
+				operate[i].className="border-color-blue";
+			}
+			this.className="selected";
+			tid=this.value;
+			$("#update")[0].className="button";
 		});
+		
+		
+		$("#update")[0].click(function() {
+			alert(tid);
+		});
+			
+		
 	});
 </script>
 </body>
