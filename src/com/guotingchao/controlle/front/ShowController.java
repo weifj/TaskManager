@@ -1,8 +1,10 @@
 package com.guotingchao.controlle.front;
 
 
+import com.guotingchao.interceptor.ForntUrlInterceptor;
 import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
+import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.log.Log4jLogger;
 import com.jfinal.log.Logger;
@@ -12,6 +14,7 @@ import com.jfinal.log.Logger;
  * @author os-yugq
  *
  */
+@Before(ForntUrlInterceptor.class)
 public class ShowController extends Controller{
 	
 	Logger log = Log4jLogger.getLogger(ShowController.class);
