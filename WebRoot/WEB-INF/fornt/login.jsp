@@ -72,7 +72,7 @@
 	<div id="pwordbox">
 		<div id="imgcont"></div>
 		<div id="fieldcont">
-			<form id="loginFrom" action="login/doLogin" method="post">
+			<form id="loginFrom" action="doLogin" method="post">
 				<div id="pboxcont">
 					<h1 style="color: white;">&lt;User&gt;</h1>
 					<div class="input-control text span4" id="pworddiv">
