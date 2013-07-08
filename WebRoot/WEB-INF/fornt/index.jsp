@@ -39,9 +39,11 @@
 	<div class="page-region">
 		<!-- 可操作任务 -->
 		<div class="page-region-content" id="Operate" style="display: none">
+		<button class="bg-color-blue"  id="updateTask">更新</button>	
 			<ul class="accordion" data-role="accordion">
-				<li class="active"><a href="#"><h3>可操做的任务</h3></a><button class="button disabled"  id="update" style="bottom: 32px;margin-left: 550px;">更新</button>	 
-					<div>
+				<li class="active"><a href="#"><h3>可操做的任务</h3></a> 
+					<div id="OperateTask">
+					
 						<ul class="listview fluid">
 							<c:forEach items="${taskListAll}" var="task">
 								<c:if test="${user_info.attrs['uname']==task.taskMaker}">
@@ -116,7 +118,7 @@
 					<div>
 						<ul class="listview fluid">
 							<c:forEach items="${taskListOn}" var="task">
-								<li class="taskList selected"
+								<li class="taskList bg-color-yellow"
 									value="${task.id}">
 									<div class="title">任务名称：${task.taskName}</div>
 									<div>
@@ -235,12 +237,12 @@ function toPlace(location){
 			}
 			this.className="selected";
 			tid=this.value;
-			$("#update")[0].className="button";
+			$("#updateTask").className="button";
 		});
 		
 		
-		$("#update")[0].click(function() {
-			alert(tid);
+		$("#updateTask").click(function() {
+			window.location.href="updateTask/"+tid;
 		});
 			
 		

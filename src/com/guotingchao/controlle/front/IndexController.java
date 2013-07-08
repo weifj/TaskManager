@@ -38,6 +38,15 @@ public class IndexController extends Controller{
 		render("index.jsp");
 	}
 	/**
+	 * 更新任务
+	 */
+	public void updateTask(){
+		Long tid = getParaToLong();
+		setSessionAttr("userList",User.userDao.findUserList());
+		setAttr("task", Task.taskDao.findTaskById(tid));
+		render("updateTask.jsp");
+	}
+	/**
 	 * 添加新任务
 	 */
 	public void addTask(){
