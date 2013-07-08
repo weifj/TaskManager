@@ -198,3 +198,38 @@ hr {
 .post_content {
     text-align: justify;
 }
+.slider.taskupdate{
+	height:25px;
+	margin: auto;
+}
+.slider.taskupdate .marker{
+	height:25px;
+	
+}
+.offset3.bg-color-blue.updateTask{
+	margin-top: -30px;
+	width: 46px;
+	height: 25px;
+    color: white;
+}
+@media (max-width: 770px){
+	.offset3.bg-color-blue.updateTask{
+		margin-top: 0px;	    
+	}
+}
+/**
+#updateTask{
+	bottom: 32px;
+}
+@media (max-width: 770px){
+	#updateTask{
+		bottom: 32px;
+		left: 62%;
+		width: 50px;
+	}	
+}
+
+#OperateTask{
+	margin-top: -30px;
+}
+*/
