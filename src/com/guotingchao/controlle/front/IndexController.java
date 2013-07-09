@@ -11,6 +11,7 @@ import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
 import com.guotingchao.validator.front.AddTaskValidate;
 import com.guotingchao.validator.front.LoginValidate;
+import com.guotingchao.validator.front.UpdateTaskValidate;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.core.JFinal;
@@ -42,16 +43,31 @@ public class IndexController extends Controller{
 	 */
 	public void updateTask(){
 		Long tid = getParaToLong();
-		setSessionAttr("userList",User.userDao.findUserList());
+		setSessionAttr("userListSession",User.userDao.findUserList());
+		setAttr("userList",User.userDao.getUserByTaskId(tid));
 		setAttr("task", Task.taskDao.findTaskById(tid));
 		render("updateTask.jsp");
 	}
+	
+	@Before(UpdateTaskValidate.class)
+	public void doUpdateTask(){
+		try{
+			if(Task.taskDao.update()){
+				setAttr("update_success_msg", "更新成功");
+			};
+		}catch(Exception e){
+			log.error(e.getMessage());		
+		};
+		render("updateTask.jsp");
+	}
+	
 	/**
 	 * 添加新任务
 	 */
 	public void addTask(){
-		setSessionAttr("userList",User.userDao.findUserList());
+		setSessionAttr("userListSession",User.userDao.findUserList());
 		render("addTask.jsp");
+		
 	}
 	
 	@Before(AddTaskValidate.class)

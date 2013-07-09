@@ -80,7 +80,7 @@
 							<td><input type="text"
 								id="username" readonly class="span3"/> <select id="suname">
 									<option>请选择</option>
-									<c:forEach items="${userList}" var="user">
+									<c:forEach items="${userListSession}" var="user">
 										<option value="${user.attrs['id']}">${user.attrs['uname']}</option>
 									</c:forEach>
 							</select> <input type="hidden" name="user.id" id="user.id" value="" /> <span
