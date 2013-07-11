@@ -218,19 +218,7 @@ $("document").ready(function(){
 		}
 	});
 	
-	var nameStr = valueStr = "";
-	$("#suname").change(function() {
-		var index = this.selectedIndex;
-		nameStr += this.children[index].text + " ";
-		if (valueStr == "") {
-			valueStr += this.value;
-		} else {
-			valueStr += "," + this.value;
-		}
-		$("#user\\.id").val(valueStr);
-		$("#username").val(nameStr);
-		this.children[index].remove();
-	});
+
 	
 	$(".slider").change(function(e,val){
 		//任务进度
