@@ -43,20 +43,34 @@ public class IndexController extends Controller{
 	 */
 	public void updateTask(){
 		Long tid = getParaToLong();
+		setSessionAttr("tid", tid);
 		setSessionAttr("userListSession",User.userDao.findUserList());
 		setAttr("userList",User.userDao.getUserByTaskId(tid));
 		setAttr("task", Task.taskDao.findTaskById(tid));
+		
 		render("updateTask.jsp");
 	}
 	
 	@Before(UpdateTaskValidate.class)
 	public void doUpdateTask(){
 		try{
-			if(Task.taskDao.update()){
+			Task task = Task.taskDao.findById(getSessionAttr("tid"));
+			task.set("taskMaker", getPara("task.taskMaker"));
+			task.set("taskInfo", getPara("task.taskInfo"));
+			task.set("taskPercent", getPara("task.taskPercent"));
+			task.set("rank", getParaToInt("task.rank"));
+			task.set("taskName", getPara("task.taskName"));
+			SimpleDateFormat sdf = new  SimpleDateFormat( "yyyy-MM-dd" ); 
+			Date play_time=sdf.parse(getPara("task.play_Time"));
+			task.set("play_Time", play_time);
+			if(task.update()){
 				setAttr("update_success_msg", "更新成功");
+			}else{
+				setAttr("update_success_msg", "更新失败");
 			};
 		}catch(Exception e){
-			log.error(e.getMessage());		
+			log.error("失败信息"+e.getMessage());
+			setAttr("update_success_msg", "更新失败");
 		};
 		render("updateTask.jsp");
 	}
@@ -67,7 +81,6 @@ public class IndexController extends Controller{
 	public void addTask(){
 		setSessionAttr("userListSession",User.userDao.findUserList());
 		render("addTask.jsp");
-		
 	}
 	
 	@Before(AddTaskValidate.class)
