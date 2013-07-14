@@ -5,16 +5,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.guotingchao.interceptor.ForntUrlInterceptor;
 import com.guotingchao.model.impl.T_user_task;
 import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
+import com.guotingchao.tools.Compare;
 import com.guotingchao.validator.front.AddTaskValidate;
 import com.guotingchao.validator.front.LoginValidate;
 import com.guotingchao.validator.front.UpdateTaskValidate;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
-import com.jfinal.core.JFinal;
 import com.jfinal.log.Log4jLogger;
 import com.jfinal.log.Logger;
 import com.jfinal.plugin.activerecord.Model;
@@ -47,34 +46,61 @@ public class IndexController extends Controller{
 		setSessionAttr("userListSession",User.userDao.findUserList());
 		setAttr("userList",User.userDao.getUserByTaskId(tid));
 		setAttr("task", Task.taskDao.findTaskById(tid));
-		
 		render("updateTask.jsp");
 	}
-	
 	@Before(UpdateTaskValidate.class)
 	public void doUpdateTask(){
-		try{
-			Task task = Task.taskDao.findById(getSessionAttr("tid"));
+		try {
+			//更新任务
+			Long tid= getSessionAttr("tid");
+			Task task =Task.taskDao.findById(tid);
 			task.set("taskMaker", getPara("task.taskMaker"));
 			task.set("taskInfo", getPara("task.taskInfo"));
 			task.set("taskPercent", getPara("task.taskPercent"));
+			task.set("taskType", getPara("task.taskType"));
 			task.set("rank", getParaToInt("task.rank"));
 			task.set("taskName", getPara("task.taskName"));
 			SimpleDateFormat sdf = new  SimpleDateFormat( "yyyy-MM-dd" ); 
 			Date play_time=sdf.parse(getPara("task.play_Time"));
-			task.set("play_Time", play_time);
-			if(task.update()){
-				setAttr("update_success_msg", "更新成功");
-			}else{
-				setAttr("update_success_msg", "更新失败");
-			};
-		}catch(Exception e){
-			log.error("失败信息"+e.getMessage());
-			setAttr("update_success_msg", "更新失败");
-		};
+			task.set("play_Time", play_time); 
+			
+			if (task.update()) {
+				String[] uid_new = getPara("user.id").split(",");
+				String[] uid_old = T_user_task.taskUserDao.getUidArray(tid);
+				//两个数组内容不同就进行  更新中间表
+				if(!Compare.ComArray(uid_new, uid_old)){
+					int newCount = uid_new.length;
+					int oldCount = uid_old.length;
+					//在uid_new中不包含uid_old里的uid  就删除此项
+					for(int i = 0;i < oldCount; i++){
+						if(!Compare.Content(uid_new, uid_old[i])){
+							if(T_user_task.taskUserDao.deleteByTidAndUid(tid, Long.parseLong(uid_old[i]))){
+								log.info("删除中间表中的里面的内容。。。 成功");
+							}
+						}
+					}
+					//在uid_old中不包含uid_new里的uid  就添加此项
+					for(int i = 0;i < newCount; i++){
+						if(!Compare.Content(uid_old, uid_new[i])){
+							T_user_task user_task = new T_user_task();
+							user_task.set("tid", tid);
+							user_task.set("uid",uid_new[i]);
+							if(user_task.save()){
+								log.info("添加中间表中的里面的内容。。。成功");
+							};
+						}
+					}
+					
+				}
+				
+				setAttr("update_success_msg", "添加成功");
+			}
+		} catch (Exception e) {
+			log.error("更新任务" + getPara("task.taskName")+ "失败,原因：" + e.getMessage());
+			setAttr("update_success_msg", "添加失败");
+		}
 		render("updateTask.jsp");
 	}
-	
 	/**
 	 * 添加新任务
 	 */

@@ -46,9 +46,10 @@
 					
 						<ul class="listview fluid">
 							<c:forEach items="${taskListAll}" var="task">
-								<c:if test="${user_info.attrs['uname']==task.taskMaker}">
+							  <c:if test="${user_info.attrs['uname']==task.taskMaker}">
 								<li class="border-color-blue" value="${task.id}" >
 									<div class="Operate">任务名称：${task.taskName}</div>
+									<div class="time">任务时间：${task.creat_Time}</div>
 									<div>
 										任务描述：
 										<blockquote>${task.taskInfo}</blockquote>
@@ -244,8 +245,6 @@ function toPlace(location){
 		$("#updateTask").click(function() {
 			window.location.href="updateTask/"+tid;
 		});
-			
-		
 	});
 </script>
 </body>

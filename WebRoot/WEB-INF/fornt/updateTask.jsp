@@ -87,7 +87,7 @@
 						<tr>
 							<td>当前状态：</td>
 							<td>
-								<input type="hidden" name="user.id" id="user.id" value="${task.taskType}" />
+								<input type="hidden" name="task.taskType" id="task.taskType" value="${task.taskType}" />
 								<div class="span4">
 								<c:choose>
 			                  				<c:when test="${task.taskType eq 0}"><a class="icon-attachment update" style="font-size: 28px;color: blue;"></a><span id="taskType" style="font-size: 20px;">初始化</span></c:when>
@@ -218,11 +218,22 @@ $("document").ready(function(){
 		}
 	});
 	
-
+	var nameStr = valueStr = "";
+	$("#suname").change(function() {
+		var index = this.selectedIndex;
+		nameStr += this.children[index].text + " ";
+		if (valueStr == "") {
+			valueStr += this.value;
+		} else {
+			valueStr += "," + this.value;
+		}
+		$("#user\\.id").val(valueStr);
+		$("#username").val(nameStr);
+		this.children[index].remove();
+	});
 	
 	$(".slider").change(function(e,val){
 		//任务进度
-		$("#task\\.taskPercent").val(val);
 		$("#slider_val").html(val+"%");
 		if(val==100){
 			this.children[0].style.background="green";
@@ -234,7 +245,8 @@ $("document").ready(function(){
 		
 		//任务等级
 		$("#task\\.rank").val($("#rating .rated").length);
-		
+		var percentStr = $("#slider_val").html();
+		$("#task\\.taskPercent").val(percentStr.substring(0,percentStr.length-1));
 		//获取用户id
 		var valueStr = "";
 		for(var i=0;i<s1[0].options.length;i++){
