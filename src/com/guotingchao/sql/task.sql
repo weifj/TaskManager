@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50106
-Source Host           : 10.0.192.205:3306
+Source Server Version : 50022
+Source Host           : localhost:3306
 Source Database       : taskmanager
 
 Target Server Type    : MYSQL
-Target Server Version : 50106
+Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2013-07-12 17:47:44
+Date: 2013-07-15 23:07:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
-  `id` bigint(50) unsigned NOT NULL auto_increment,
+  `id` int(50) unsigned NOT NULL auto_increment,
   `taskName` varchar(255) NOT NULL COMMENT '任务名称',
   `taskInfo` varchar(255) default NULL COMMENT '任务信息',
   `creat_Time` timestamp NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT '任务创建时间',
@@ -40,7 +40,7 @@ INSERT INTO `task` VALUES ('2', '任务二', 'second', '2013-06-23 13:31:17', nu
 INSERT INTO `task` VALUES ('3', '任务三', 'third', '2013-06-23 13:32:04', null, '0', '2013-06-20 17:18:48', '戴晓芬', '5', '1');
 INSERT INTO `task` VALUES ('4', '任务四', 'forth', '2013-06-23 21:15:04', null, '1', '2013-06-26 13:32:28', '王岩', '5', '40');
 INSERT INTO `task` VALUES ('5', '任务五', 'fifth', '2013-06-23 21:15:02', null, '1', '2013-06-28 13:33:21', '王岩', '2', '50');
-INSERT INTO `task` VALUES ('6', '任务六', 'sixth', '2013-07-12 16:40:01', null, '1', '2013-06-29 00:00:00', '戴晓芬', '0', '30');
+INSERT INTO `task` VALUES ('6', '任务六更新', 'sixth更新', '2013-07-14 22:12:13', null, '-1', '2013-06-29 00:00:00', '戴晓芬', '0', '30');
 INSERT INTO `task` VALUES ('7', '任务七', 'seventh', '2013-06-23 21:14:55', null, '-1', '2013-06-27 13:35:44', '王岩', '1', '70');
 INSERT INTO `task` VALUES ('8', '任务八', 'eighth', '2013-06-23 21:14:47', '2013-06-28 13:38:12', '2', '2013-06-27 13:38:03', '戴晓芬', '5', '100');
 INSERT INTO `task` VALUES ('9', '任务九', 'ninth', '2013-06-23 21:14:48', '2013-06-26 13:39:41', '2', '2013-06-25 13:39:47', '王岩', '2', '100');
@@ -48,3 +48,4 @@ INSERT INTO `task` VALUES ('13', '任务十', 'tenth', '2013-07-01 16:15:43', nu
 INSERT INTO `task` VALUES ('154', 'newafef453453efe', 'newfasfasfagergrwefwef', '2013-07-12 15:54:26', null, '0', '2013-07-19 00:00:00', '郭听潮', '0', '72');
 INSERT INTO `task` VALUES ('155', 'test好的', 'testh好的', '2013-07-12 16:20:25', null, '0', '2013-07-19 00:00:00', '郭听潮', '0', '25');
 INSERT INTO `task` VALUES ('156', '新任务 ', '234234', '2013-07-11 15:45:32', null, '0', '2013-07-17 00:00:00', '王岩', '4', '1');
+INSERT INTO `task` VALUES ('157', '信息任务', '信息任务', '2013-07-15 22:58:23', null, '0', '2013-07-15 00:00:00', '戴晓芬', '3', '1');

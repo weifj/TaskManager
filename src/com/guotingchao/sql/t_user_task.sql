@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50106
-Source Host           : 10.0.192.205:3306
+Source Server Version : 50022
+Source Host           : localhost:3306
 Source Database       : taskmanager
 
 Target Server Type    : MYSQL
-Target Server Version : 50106
+Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2013-07-12 17:47:31
+Date: 2013-07-15 23:07:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,9 +19,9 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user_task`;
 CREATE TABLE `t_user_task` (
-  `id` bigint(50) unsigned NOT NULL auto_increment,
-  `tid` bigint(50) NOT NULL COMMENT '任务id',
-  `uid` bigint(50) NOT NULL COMMENT '用户id',
+  `id` int(50) unsigned NOT NULL auto_increment,
+  `tid` int(50) NOT NULL COMMENT '任务id',
+  `uid` int(50) NOT NULL COMMENT '用户id',
   `messageType` int(10) NOT NULL default '0' COMMENT '显示信息状态，0表示显示，-1不显示',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -55,3 +55,6 @@ INSERT INTO `t_user_task` VALUES ('145', '155', '9', '-1');
 INSERT INTO `t_user_task` VALUES ('146', '155', '6', '-1');
 INSERT INTO `t_user_task` VALUES ('147', '6', '10', '-1');
 INSERT INTO `t_user_task` VALUES ('148', '6', '12', '-1');
+INSERT INTO `t_user_task` VALUES ('149', '157', '7', '0');
+INSERT INTO `t_user_task` VALUES ('150', '157', '12', '0');
+INSERT INTO `t_user_task` VALUES ('151', '157', '10', '0');
