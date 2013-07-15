@@ -201,6 +201,17 @@
 		</div>
 		<!-- 冻结 end -->
 	</div>
+	<div widtd="auto">
+	<div class="span5" style="postion: absolute;float: right;">
+	      <ul class="replies">
+	      <c:forEach items="${MsgTaskList}" var="task">
+	      	<li class="bg-color-orange">
+	                <div class="title">任务名称：${task}</div>          
+	        </li>
+	      </c:forEach>
+	      </ul>
+	</div>
+	</div>
 </div>
 <!-- footer -->
 <jsp:include page="footer.html" flush="true" />
