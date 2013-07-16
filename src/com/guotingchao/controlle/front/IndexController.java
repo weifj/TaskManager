@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.guotingchao.interceptor.ForntMessageInterceptor;
 import com.guotingchao.model.impl.T_user_task;
 import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
@@ -22,7 +23,7 @@ import com.jfinal.plugin.activerecord.Model;
  * 前端Index控制器
  * @author os-yugq
  */
-
+@Before(ForntMessageInterceptor.class)
 public class IndexController extends Controller{
 	
 	Logger log= Log4jLogger.getLogger(IndexController.class);

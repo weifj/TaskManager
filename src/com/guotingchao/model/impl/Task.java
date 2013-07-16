@@ -1,6 +1,7 @@
 package com.guotingchao.model.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.guotingchao.model.ITaskDao;
 import com.jfinal.plugin.activerecord.Model;
@@ -8,6 +9,9 @@ public class Task extends Model<Task> implements ITaskDao{
 	private static final long serialVersionUID = 1L;
 	public static Task taskDao = new Task();
 	
+	public Map<String, Object> getAttrs(){
+	    return super.getAttrs();
+	}
 	@Override
 	public List<Task> findAllTaskList() {
 		
