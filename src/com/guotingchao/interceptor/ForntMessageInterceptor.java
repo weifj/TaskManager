@@ -39,6 +39,8 @@ public class ForntMessageInterceptor  implements Interceptor {
 					taskList.add(Task.taskDao.findById(list.get(i).getInt("tid")));
 				}
 				c.setSessionAttr("MsgTaskList", taskList);
+				c.setSessionAttr("MsgTask", taskList.get(taskList.size()-1));
+				c.setSessionAttr("MsgCount", count);
 			}
 			
 		}
