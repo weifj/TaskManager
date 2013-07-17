@@ -29,22 +29,25 @@ public class ForntMessageInterceptor  implements Interceptor {
 		User user =c.getSessionAttr("user_info");
 		if(user!=null){
 			Long uid = user.getLong("id");
-			
+			//获取有信息的任务
 			List<BaseModel<T_user_task>> list = T_user_task.taskUserDao.findMsgTaskByUid(uid);
 			
 			if(list!=null){
 				int count = list.size();
+				//有信息的任务列表
 				List<Task> taskList = new ArrayList<Task>(count);
 				for(int i = 0;i < count;i++){
 					taskList.add(Task.taskDao.findById(list.get(i).getInt("tid")));
 				}
-				c.setSessionAttr("MsgTaskList", taskList);
-				c.setSessionAttr("MsgTask", taskList.get(taskList.size()-1));
-				c.setSessionAttr("MsgCount", count);
+				if(taskList.size()>0){
+					int last = taskList.size()-1;
+					c.setSessionAttr("MsgTaskList", taskList);
+					c.setSessionAttr("MsgTask", taskList.get(last));
+					c.setSessionAttr("MsgCount", count);
+				}
 			}
 			
 		}
-		
 		ai.invoke();
 		
 	}

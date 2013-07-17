@@ -26,4 +26,11 @@ public interface ITaskUserkDao{
 	 * @return
 	 */
 	public List<BaseModel<T_user_task>> findMsgTaskByUid(Long uid);
+	/**
+	 * 将消息任务全部更新为已查看任务
+	 * @return
+	 */
+	public boolean updateMsgTask();
+		
+	
 }

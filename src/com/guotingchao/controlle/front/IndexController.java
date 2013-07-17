@@ -1,5 +1,6 @@
 package com.guotingchao.controlle.front;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,7 @@ public class IndexController extends Controller{
 	/**
 	 *  主页
 	 */
+	@Before(ForntMessageInterceptor.class)
 	public void index(){
 		setAttr("taskListAll", Task.taskDao.findAllTaskList());
 		setAttr("taskListInit", Task.taskDao.findTaskListByType(0));
@@ -37,6 +39,23 @@ public class IndexController extends Controller{
 		setAttr("taskListFinish", Task.taskDao.findTaskListByType(2));
 		setAttr("taskListBlocked", Task.taskDao.findTaskListByType(-1));
 		render("index.jsp");
+	}
+	/*
+	 * 把消息任务全部更新为已查看任务
+	 */
+	public void doUpdateMsgTask() throws IOException{
+ 		try{
+			if(T_user_task.taskUserDao.updateMsgTask()){
+				removeSessionAttr("MsgTaskList");
+				removeSessionAttr("MsgTask");
+				removeSessionAttr("MsgCount");
+			}else{
+				log.info("更新消息任务失败！");
+			}
+		}catch(Exception e){
+			log.info("更新消息任务失败！"+e.getMessage());
+		}
+		renderNull();
 	}
 	/**
 	 * 更新任务

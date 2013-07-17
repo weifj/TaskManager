@@ -12,6 +12,9 @@ public class Task extends Model<Task> implements ITaskDao{
 	public Map<String, Object> getAttrs(){
 	    return super.getAttrs();
 	}
+
+	
+	
 	@Override
 	public List<Task> findAllTaskList() {
 		
