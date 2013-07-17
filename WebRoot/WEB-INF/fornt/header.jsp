@@ -52,11 +52,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="span4 bg-color-white" style="float: right;position: fixed;bottom: 0px;right: 0px;z-index: 999;box-shadow: 0px 0px 8px 1px #817171;-webkit-border-radius: 4px;">
+	<c:if test="${MsgCount!=null}">
+	<div class="span4 bg-color-blue msg" style="bottom:-180px;height: 175px;color: #FFF;float: right;position: fixed;right: 0px;z-index: 999;box-shadow: 0px 0px 8px 1px #817171;-webkit-border-radius: 4px;">
 	  <div class="span4" style="border-bottom: 1px solid #150EBE;">
 	  	<span class="icon-comments-5" style="width: 25px;height: 25px;font-size: 25px;color: blue;padding-left: 6px; padding-top: 5px;"></span>
 	  	<span style="font-size: 18px;">你有新的任务</span>
-	  	<span class="icon-cancel-2" style="float: right;font-size: 15px;padding-right: 5px;padding-top: 5px;"></span>
+	  	<a href="javascript:void(0);" class="icon-cancel-2" style="color: #FFF;float: right;font-size: 15px;padding-right: 5px;padding-top: 5px;"></a>
 	  </div>
 	  <div class="span4" style="border-bottom: 1px solid #150EBE;">
 	  	<p style="text-align: center;">${MsgTask.attrs['taskName']}</p>
@@ -64,12 +65,12 @@
 	  	<p style="text-align: left;">派发人：${MsgTask.attrs['taskMaker']}</p>
 	  	<p style="text-align: left;">建立时间：${MsgTask.attrs['creat_Time']}</p>
 	  </div>
-	  <div class="span4">
-	  	<p style="text-align: left;">产看更多任务,与自己相关（${MsgCount}）</p>
-	  </div>   
-	      
+	  <div class="span4" style="display: inline;">
+	  	<p class="span3" style="text-align: left;float: left;"><a href="javascript：void(0);" style="color: #FFF;font-weight: bold;">查看更多任务（${MsgCount}）</a></p>
+	  	<a href="javascript:void(0);" class="span1 neverShow" style="float: right;color: #FFF;">不再提示</a>
+	  </div>        
 	</div>
-                        
+    </c:if>                    
                         
                         
                         
