@@ -30,6 +30,14 @@ public class Task extends Model<Task> implements ITaskDao{
 	public Task findTaskById(Long id) {
 		return Task.taskDao.findById(id);
 	}
+
+
+
+	@Override
+	public List<Task> findTaskByUser(String uname) {
+		
+		return Task.taskDao.find("select * from task where taskMaker = ? ",uname);
+	}
 	
 	
 }

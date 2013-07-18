@@ -46,5 +46,14 @@ public class T_user_task extends BaseModel<T_user_task> implements ITaskUserkDao
 		}
 		return flag;
 	}
+
+	@Override
+	public boolean checkedMsgTask(int tid,Long uid) {
+		BaseModel<T_user_task> t_user_task = taskUserDao.find("select * from t_user_task  where tid=? and uid=?",tid,uid).get(0);
+		t_user_task.set("messageType", -1);
+		if(t_user_task.update())
+			return true;
+		return false;
+	}
 	
 }

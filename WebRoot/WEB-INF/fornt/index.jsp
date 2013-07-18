@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <!--  header-->
-<jsp:include page="header.jsp" flush="true" />
+<jsp:include page="header.jsp" flush="false" />
 <!-- header End -->
 <div class="page with-sidebar">
 	<!-- header -->
@@ -21,7 +21,7 @@
 	<!-- leftMenu -->
 	<div class="page-sidebar">
 		<ul class="sub-menu light">
-			<c:if test="${user_info.attrs['uname']!=null}">
+			<c:if test="${user_info.attrs['uname']!=null&&taskListRelative!=null}">
 				<li class="sticker sticker-color-black" data-for-id="Operate"><a
 				href="#">可操作任务</a></li>
 			</c:if>
@@ -45,8 +45,7 @@
 					<div id="OperateTask">
 					
 						<ul class="listview fluid">
-							<c:forEach items="${taskListAll}" var="task">
-							  <c:if test="${user_info.attrs['uname']==task.taskMaker}">
+							<c:forEach items="${taskListRelative}" var="task">
 								<li class="border-color-blue" value="${task.id}" >
 									<div class="Operate">任务名称：${task.taskName}</div>
 									<div class="time">任务时间：${task.creat_Time}</div>
@@ -65,7 +64,6 @@
 										</p>
 									</div>
 								</li>
-								</c:if>
 							</c:forEach>
 						</ul>
 					</div></li>
@@ -229,7 +227,6 @@ function toPlace(location){
 			window.location.href="taskInfo/show/"+this.value;
 		});
 		
-	
 		var operate =$(".Operate").parent();
 		var tid;
 		operate.click(function() {

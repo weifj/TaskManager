@@ -1,12 +1,17 @@
 package com.guotingchao.controlle.front;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.guotingchao.interceptor.ForntMessageInterceptor;
+import com.guotingchao.model.BaseModel;
 import com.guotingchao.model.impl.T_user_task;
 import com.guotingchao.model.impl.Task;
 import com.guotingchao.model.impl.User;
@@ -33,17 +38,75 @@ public class IndexController extends Controller{
 	 */
 	@Before(ForntMessageInterceptor.class)
 	public void index(){
-		setAttr("taskListAll", Task.taskDao.findAllTaskList());
+		User user = getSessionAttr("user_info");
+		if(user!=null){
+			String uname = user.get("uname");
+			List<Task> taskListRelative = Task.taskDao.findTaskByUser(uname);
+			if(taskListRelative.size()>0){
+				setAttr("taskListRelative", taskListRelative);
+			}
+		}
+		System.out.println(getAttr("taskListRelative"));
 		setAttr("taskListInit", Task.taskDao.findTaskListByType(0));
 		setAttr("taskListOn", Task.taskDao.findTaskListByType(1));
 		setAttr("taskListFinish", Task.taskDao.findTaskListByType(2));
 		setAttr("taskListBlocked", Task.taskDao.findTaskListByType(-1));
 		render("index.jsp");
 	}
-	/*
+	/**
+	 * 获取消息任务内容
+	 */
+	public void msgInterceptor(){
+		User user =getSessionAttr("user_info");
+		HttpServletResponse response = getResponse();
+		response.setContentType("charset=utf-8");
+		JSONObject json = null;
+		if(user!=null){
+			Long uid = user.getLong("id");
+			//获取有信息的任务
+			List<BaseModel<T_user_task>> list = T_user_task.taskUserDao.findMsgTaskByUid(uid);
+
+			if(list!=null){
+				int count = list.size();
+				//有信息的任务列表
+				List<Task> taskList = new ArrayList<Task>(count);
+				for(int i = 0;i < count;i++){
+					taskList.add(Task.taskDao.findById(list.get(i).getInt("tid")));
+				}
+				if(taskList.size()>0){
+					int last = taskList.size()-1;
+					try {
+						json = new JSONObject(taskList.get(last).toJson());
+						json.put("MsgCount", count);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					
+				}
+			}
+		}
+						renderJson(json.toString());
+	}
+	/**
+	 * 查看未读任务，并标识为已读
+	 */			
+	public void doCheckedMsgTask(){
+		User user = getSessionAttr("user_info");
+		Long uid = user.get("id");
+		int tid = getParaToInt("tid");
+		T_user_task.taskUserDao.checkedMsgTask(tid, uid);
+		renderNull();
+	}
+	/**
+	 * 显示与自己相关的未查看任务
+	 */
+	public void showMsgTask(){
+		render("showMsgTask.jsp");
+	}
+	/**
 	 * 把消息任务全部更新为已查看任务
 	 */
-	public void doUpdateMsgTask() throws IOException{
+	public void doUpdateMsgTask(){
  		try{
 			if(T_user_task.taskUserDao.updateMsgTask()){
 				removeSessionAttr("MsgTaskList");

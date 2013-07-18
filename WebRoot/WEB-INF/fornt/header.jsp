@@ -53,21 +53,21 @@
 		</div>
 	</div>
 	<c:if test="${MsgCount!=null}">
-	<div class="span4 bg-color-blue msg" style="bottom:-180px;height: 175px;color: #FFF;float: right;position: fixed;right: 0px;z-index: 999;box-shadow: 0px 0px 8px 1px #817171;-webkit-border-radius: 4px;">
-	  <div class="span4" style="border-bottom: 1px solid #150EBE;">
-	  	<span class="icon-comments-5" style="width: 25px;height: 25px;font-size: 25px;color: blue;padding-left: 6px; padding-top: 5px;"></span>
-	  	<span style="font-size: 18px;">你有新的任务</span>
-	  	<a href="javascript:void(0);" class="icon-cancel-2" style="color: #FFF;float: right;font-size: 15px;padding-right: 5px;padding-top: 5px;"></a>
+	<div class="span3 bg-color-blue msg" ng-controller="msgBox">
+	  <div class="span3 solid">
+	  	<span class="icon-comments-5 msgComments"></span>
+	  	<span style="font-size: 18px;">你有新的任务！</span>
+	  	<a href="javascript:void(0);" class="icon-cancel-2 msgClose"></a>
 	  </div>
-	  <div class="span4" style="border-bottom: 1px solid #150EBE;">
-	  	<p style="text-align: center;">${MsgTask.attrs['taskName']}</p>
-	  	<p style="text-align: left;">信息描述：${MsgTask.attrs['taskInfo']}</p>
-	  	<p style="text-align: left;">派发人：${MsgTask.attrs['taskMaker']}</p>
-	  	<p style="text-align: left;">建立时间：${MsgTask.attrs['creat_Time']}</p>
+	  <div class="span3 solid">
+	  	<p class="msgTitle">{{title}}</p>
+	  	<p class="msgContent">信息描述：${MsgTask.attrs['taskInfo']}</p>
+	  	<p class="msgContent">派发人：${MsgTask.attrs['taskMaker']}</p>
+	  	<p class="msgContent">建立时间：${MsgTask.attrs['creat_Time']}</p>
 	  </div>
-	  <div class="span4" style="display: inline;">
-	  	<p class="span3" style="text-align: left;float: left;"><a href="javascript：void(0);" style="color: #FFF;font-weight: bold;">查看更多任务（${MsgCount}）</a></p>
-	  	<a href="javascript:void(0);" class="span1 neverShow" style="float: right;color: #FFF;">不再提示</a>
+	  <div class="span3 " style="display: inline;">
+	  	<a class="span2 checkMsg" href="showMsgTask">查看更多任务（{{$scope.MsgCount}}）</a>
+	  	<a class="span1 neverShow" href="javascript:void(0);">不再提示</a>
 	  </div>        
 	</div>
     </c:if>                    

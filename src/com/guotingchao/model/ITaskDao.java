@@ -26,5 +26,10 @@ public interface ITaskDao{
 	 */
 	public Task findTaskById(Long id);
 	
-	
+	/**
+	 * 通过用户名获取相关的任务列表
+	 * @param uname
+	 * @return
+	 */
+	public List<Task> findTaskByUser(String uname);
 }
