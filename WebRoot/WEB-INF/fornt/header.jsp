@@ -7,7 +7,7 @@
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE HTML>
-<html>
+<html ng-app>
 <head>
 <base href="<%=basePath%>">
 <title>任务管理平台</title>
@@ -52,25 +52,24 @@
 			</div>
 		</div>
 	</div>
-	<c:if test="${MsgCount!=null}">
+	
 	<div class="span3 bg-color-blue msg" ng-controller="msgBox">
 	  <div class="span3 solid">
 	  	<span class="icon-comments-5 msgComments"></span>
-	  	<span style="font-size: 18px;">你有新的任务！</span>
+	  	<span style="font-size: 18px;">你有新的任务</span>
 	  	<a href="javascript:void(0);" class="icon-cancel-2 msgClose"></a>
 	  </div>
 	  <div class="span3 solid">
-	  	<p class="msgTitle">{{title}}</p>
-	  	<p class="msgContent">信息描述：${MsgTask.attrs['taskInfo']}</p>
-	  	<p class="msgContent">派发人：${MsgTask.attrs['taskMaker']}</p>
-	  	<p class="msgContent">建立时间：${MsgTask.attrs['creat_Time']}</p>
+	  	<p class="msgTitle">{{ taskName }}</p>
+	  	<p class="msgContent">信息描述：{{ taskInfo }}</p>
+	  	<p class="msgContent">派发人：{{ taskMaker }}</p>
+	  	<p class="msgContent">建立时间：{{ creat_Time }}</p>
 	  </div>
 	  <div class="span3 " style="display: inline;">
-	  	<a class="span2 checkMsg" href="showMsgTask">查看更多任务（{{$scope.MsgCount}}）</a>
+	  	<a class="span2 checkMsg" href="showMsgTask">查看更多任务（{{MsgCount}}）</a>
 	  	<a class="span1 neverShow" href="javascript:void(0);">不再提示</a>
 	  </div>        
-	</div>
-    </c:if>                    
+	</div>                  
                         
                         
                         

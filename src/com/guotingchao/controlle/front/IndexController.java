@@ -29,7 +29,6 @@ import com.jfinal.plugin.activerecord.Model;
  * 前端Index控制器
  * @author os-yugq
  */
-@Before(ForntMessageInterceptor.class)
 public class IndexController extends Controller{
 	
 	Logger log= Log4jLogger.getLogger(IndexController.class);
@@ -85,7 +84,11 @@ public class IndexController extends Controller{
 				}
 			}
 		}
-						renderJson(json.toString());
+		if(json==null){
+			renderNull();
+		}else{
+			renderJson(json.toString());
+		}
 	}
 	/**
 	 * 查看未读任务，并标识为已读
@@ -101,6 +104,21 @@ public class IndexController extends Controller{
 	 * 显示与自己相关的未查看任务
 	 */
 	public void showMsgTask(){
+		User user =getSessionAttr("user_info");
+		if(user!=null){
+			Long uid = user.getLong("id");
+			//获取有信息的任务
+			List<BaseModel<T_user_task>> list = T_user_task.taskUserDao.findMsgTaskByUid(uid);
+			if(list!=null){
+				int count = list.size();
+				//有信息的任务列表
+				List<Task> taskList = new ArrayList<Task>(count);
+				for(int i = 0;i < count;i++){
+					taskList.add(Task.taskDao.findById(list.get(i).getInt("tid")));
+				}
+			    setAttr("MsgTaskList", taskList);
+			}
+		}
 		render("showMsgTask.jsp");
 	}
 	/**
@@ -248,6 +266,5 @@ public class IndexController extends Controller{
 		removeSessionAttr("actionKey");
 		redirect("/");
 	}
-	
-	
+
 }

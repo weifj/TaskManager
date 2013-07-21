@@ -1,20 +1,26 @@
-var msgBox = function($scope,  $element){};
-$(function(){
-	$.ajax({
-		url:"msgInterceptor",
-		type:"POST",
-		success:function(task){
-			msgBox.title=task.taskName;
-			
-			
-			msgBox.MsgCount=task.MsgCount;
-			
-		}
+var msgBox = function($scope,  $http){
 	
+	var get = $http({
+		method:'GET',
+		url:'msgInterceptor'
 	});
-	if(!$(".msg").is(":hidden")){
-		$(".msg").animate({bottom:0},2000);
-	}
+	get.success(function(response,status,header,config){
+		$scope.taskName=response.taskName;
+		$scope.taskInfo=response.taskInfo;
+		$scope.taskMaker=response.taskMaker;
+		$scope.creat_Time=response.creat_Time;
+		$scope.MsgCount=response.MsgCount;
+		if($scope.MsgCount>0){
+			$(".msg").animate({bottom:0},2000);
+		}else{
+			$(".msg").hidde();
+		}
+		console.log($scope);
+		
+	});
+};
+$(function(){
+	
 	//消息框消失
 	$(".msgClose").click(function(){
         $(this).parents(".span3.bg-color-blue.msg").animate({

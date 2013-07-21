@@ -27,21 +27,21 @@
 					<div id="MsgTask">
 						<ul class="listview fluid">
 							<c:forEach items="${MsgTaskList}" var="task">
-								<li class="border-color-blue" value="${task.attrs['id']}" >
-									<div class="title">任务名称：${task.attrs['taskName']}</div>
-									<div class="time">任务时间：${task.attrs['creat_Time']}</div>
+								<li class="border-color-blue" value="${task.id}" >
+									<div class="title">任务名称：${task.taskName}</div>
+									<div class="time">任务时间：${task.creat_Time}</div>
 									<div>
 										任务描述：
-										<blockquote>${task.attrs['taskInfo']}</blockquote>
+										<blockquote>${task.taskInfo}</blockquote>
 										任务进度:
 										<div class="progress-bar">
 											<div class="bar bg-color-green"
-												style="width: ${task.attrs['taskPercent']}%"></div>
+												style="width: ${task.taskPercent}%"></div>
 											<div class="bar bg-color-yellow"
-												style="width: ${100-task.attrs['taskPercent']}%"></div>
+												style="width: ${100-task.taskPercent}%"></div>
 										</div>
 										<p class="place-right">
-											<strong>发起人:<a>${task.attrs['taskMaker']}</a></strong>
+											<strong>发起人:<a>${task.taskMaker}</a></strong>
 										</p>
 									</div>
 								</li>
