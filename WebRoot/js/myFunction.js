@@ -13,7 +13,7 @@ var msgBox = function($scope,  $http){
 		if($scope.MsgCount>0){
 			$(".msg").animate({bottom:0},2000);
 		}else{
-			$(".msg").hidde();
+			$(".msg").hide();
 		}
 		console.log($scope);
 		
