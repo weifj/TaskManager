@@ -6,7 +6,7 @@
 <!DOCTYPE HTML>
 <html>
 <!--  header-->
-<jsp:include page="header.jsp" flush="false" />
+<jsp:include page="header.jsp" flush="true" />
 <!-- header End -->
 <div class="page with-sidebar">
 	<!-- header -->
@@ -106,6 +106,12 @@
 								</li>
 							</c:forEach>
 						</ul>
+						<div class="span8" style="text-align: center;">
+							当前第<span id="pagCurrent">1</span>页,共<span id="pagTotal">${totalPage}</span>页,跳转至<input style="width: 20px;" type="text" name="pagNo" id="pagNo"></input>页
+							<a href="javascript:void(0);" id="upPage">上一页</a>
+							<a href="javascript:void(0);" id="downPage">下一页</a>
+							
+						</div>
 					</div></li>
 			</ul>
 		</div>
@@ -241,6 +247,12 @@ function toPlace(location){
 		
 		$("#updateTask").click(function() {
 			window.location.href="updateTask/"+tid;
+		});
+		
+		//分页操作
+		$("#downPage").click(function(){
+			console.log($("#pagCurrent").val());
+			$("#pagCurrent").val($("#pagCurrent").val()+1);
 		});
 	});
 </script>
