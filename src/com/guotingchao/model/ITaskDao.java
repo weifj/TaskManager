@@ -3,6 +3,7 @@ package com.guotingchao.model;
 import java.util.List;
 
 import com.guotingchao.model.impl.Task;
+import com.jfinal.plugin.activerecord.Page;
 
 public interface ITaskDao{
 	
@@ -17,7 +18,7 @@ public interface ITaskDao{
 	 * @param taskType
 	 * @return List
 	 */
-	public List<Task> findTaskListByType(int taskType);
+	public Page<Task> findTaskListByType(int taskType);
 	
 	/**
 	 * 通过id获取task

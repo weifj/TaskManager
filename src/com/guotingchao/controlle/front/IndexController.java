@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.guotingchao.interceptor.ForntMessageInterceptor;
+import com.guotingchao.PaginationContext;
 import com.guotingchao.model.BaseModel;
 import com.guotingchao.model.impl.T_user_task;
 import com.guotingchao.model.impl.Task;
@@ -35,7 +35,6 @@ public class IndexController extends Controller{
 	/**
 	 *  主页
 	 */
-	@Before(ForntMessageInterceptor.class)
 	public void index(){
 		User user = getSessionAttr("user_info");
 		if(user!=null){
@@ -45,11 +44,15 @@ public class IndexController extends Controller{
 				setAttr("taskListRelative", taskListRelative);
 			}
 		}
-		System.out.println(getAttr("taskListRelative"));
-		setAttr("taskListInit", Task.taskDao.findTaskListByType(0));
-		setAttr("taskListOn", Task.taskDao.findTaskListByType(1));
-		setAttr("taskListFinish", Task.taskDao.findTaskListByType(2));
-		setAttr("taskListBlocked", Task.taskDao.findTaskListByType(-1));
+		//设置起始页
+		PaginationContext.setPageNo(1);
+		//初始化任务
+		setAttr("taskListInit", Task.taskDao.findTaskListByType(0).getList());
+		setAttr("totalPage", Task.taskDao.findTaskListByType(0).getTotalPage());
+		
+		setAttr("taskListOn", Task.taskDao.findTaskListByType(1).getList());
+		setAttr("taskListFinish", Task.taskDao.findTaskListByType(2).getList());
+		setAttr("taskListBlocked", Task.taskDao.findTaskListByType(-1).getList());
 		render("index.jsp");
 	}
 	/**
