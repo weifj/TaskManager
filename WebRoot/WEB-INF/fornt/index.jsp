@@ -108,8 +108,8 @@
 						</ul>
 						<div class="span8" style="text-align: center;">
 							当前第<span id="pagCurrent">1</span>页,共<span id="pagTotal">${totalPage}</span>页,跳转至<input style="width: 20px;" type="text" name="pagNo" id="pagNo"></input>页
-							<a href="javascript:void(0);" id="upPage">上一页</a>
-							<a href="javascript:void(0);" id="downPage">下一页</a>
+							<button id="upPage" disabled>上一页</button>
+							<button id="downPage">下一页</button>
 							
 						</div>
 					</div></li>
@@ -250,10 +250,35 @@ function toPlace(location){
 		});
 		
 		//分页操作
+		var a = parseInt($("#pagCurrent").text());
 		$("#downPage").click(function(){
-			console.log($("#pagCurrent").val());
-			$("#pagCurrent").val($("#pagCurrent").val()+1);
+			$("#upPage")[0].disabled=false;
+			a++;
+			
+			$.ajax({
+				url:"doPage",
+				type:"POST",
+				data:{"a":a},
+				success:function(){
+					$("#pagCurrent").text(a);
+					if(a==$("#pagTotal").text()){
+						$("#downPage")[0].disabled=true;
+					}
+				}
+			});
+			
+			
 		});
+		
+		$("#upPage").click(function(){
+			$("#downPage")[0].disabled=false;
+			a--;
+			$("#pagCurrent").text(a);
+			if(a==1){
+				$("#upPage")[0].disabled=true;
+			}
+		});
+		
 	});
 </script>
 </body>
