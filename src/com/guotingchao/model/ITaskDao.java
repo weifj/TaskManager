@@ -18,7 +18,7 @@ public interface ITaskDao{
 	 * @param taskType
 	 * @return List
 	 */
-	public Page<Task> findTaskListByType(int taskType);
+	public List<Task> findTaskListByType(int taskType);
 	
 	/**
 	 * 通过id获取task

@@ -106,12 +106,12 @@
 								</li>
 							</c:forEach>
 						</ul>
-						<div class="span8" style="text-align: center;">
+						<!-- div class="span8" style="text-align: center;">
 							当前第<span id="pagCurrent">1</span>页,共<span id="pagTotal">${totalPage}</span>页,跳转至<input style="width: 20px;" type="text" name="pagNo" id="pagNo"></input>页
 							<button id="upPage" disabled>上一页</button>
 							<button id="downPage">下一页</button>
 							
-						</div>
+						</div -->
 					</div></li>
 			</ul>
 		</div>
